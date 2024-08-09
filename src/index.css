@@ -10,3 +10,13 @@
 .font-roboto{
   font-family: "Roboto", sans-serif;
 }
+/* --------Home page main navbar design----- */
+/* .menu.custome-nav :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)), .menu :where(li:not(.menu-title) > details > summary:not(.menu-title)):hover{  
+  padding: 0 18px;
+  border-radius: 0px;
+  transition: all 0.1s;
+}
+.menu.custome-nav :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)), .menu :where(li:not(.menu-title) > details > summary:not(.menu-title)):hover{
+  background: none;
+  border: none;
+} */

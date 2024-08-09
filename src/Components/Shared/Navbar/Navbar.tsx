@@ -1,15 +1,32 @@
 import { FaAngleDown } from "react-icons/fa";
 import Logo from "../Logo/Logo";
 import { FaEarthAmericas } from "react-icons/fa6";
+import { LuCopySlash } from "react-icons/lu";
+import { TbTriangleInvertedFilled } from "react-icons/tb";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <a>Item 3</a>
+        <a className="flex items-center hover:border-b hover:border-primary">
+          About
+        </a>
       </li>
       <li>
-        <a>Item 3</a>
+        <a className=" flex items-center hover:border-b hover:border-primary gap-2">
+          Haus Students <LuCopySlash />
+        </a>
+      </li>
+      <li>
+        <a className=" flex items-center hover:border-b hover:border-primary gap-2">
+          Contact Us <TbTriangleInvertedFilled />
+        </a>
+      </li>
+      <li>
+        <a className=" flex items-center hover:border-b hover:border-primary gap-2">
+          Resources <GiHamburgerMenu className="" size={18} />
+        </a>
       </li>
     </>
   );
@@ -41,11 +58,16 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="h-10">
-            <Logo />
-          </a>
+          <div className="flex items-center gap-3">
+            <a className="h-10">
+              <Logo />
+            </a>
+            <button className="btn btn-outline btn-secondary">
+              Instant Valuation
+            </button>
+          </div>
         </div>
-        <div className="navbar-end hidden lg:flex">
+        <div className="navbar-end hidden lg:flex flex-col items-end gap-4">
           <ul className="menu menu-horizontal px-1">
             {/* ---------Dropdown------ */}
             <li className="dropdown">
@@ -67,6 +89,9 @@ const Navbar = () => {
             <li>
               <button className="btn btn-outline btn-primary">Sign In</button>
             </li>
+          </ul>
+          <ul className="custome-nav px-1 text-sm font-normal font-helvetica flex gap-6 *:cursor-pointer">
+            {links}
           </ul>
         </div>
         {/* <div className="navbar-end">
