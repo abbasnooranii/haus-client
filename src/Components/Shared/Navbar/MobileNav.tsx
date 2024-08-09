@@ -6,34 +6,21 @@ import { IoClose, IoExitOutline } from "react-icons/io5";
 import studentImg from "../../../assets/Logos/student.png";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { TbTriangleInvertedFilled } from "react-icons/tb";
+import { useState } from "react";
 
 const MobileNav = () => {
+  const [showNav, setShowNav] = useState<boolean>(false);
   return (
     <div className="bg-base-100 lg:hidden">
       <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
+            <button
               className="btn btn-ghost btn-circle"
+              onClick={() => setShowNav(true)}
             >
               <GiHamburgerMenu size={18} />
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a>Homepage</a>
-              </li>
-              <li>
-                <a>Portfolio</a>
-              </li>
-              <li>
-                <a>About</a>
-              </li>
-            </ul>
+            </button>
           </div>
         </div>
         <div className="navbar-center">
@@ -51,12 +38,16 @@ const MobileNav = () => {
         </div>
       </div>
       {/* Nested Menu */}
-      <div className="h-screen overflow-y-auto min-w-[300px] absolute left-0 top-0 bg-[#f7f0e7] p-4">
+      <div
+        className={`h-screen overflow-y-auto min-w-[300px] absolute ${
+          showNav ? "left-0" : "-left-full"
+        } top-0 bg-[#f7f0e7] p-4 duration-500`}
+      >
         <div className="flex justify-between items-center">
           <div className="h-6">
             <Logo />
           </div>
-          <button className="">
+          <button className="" onClick={() => setShowNav(false)}>
             <IoClose size={22} />
           </button>
         </div>
