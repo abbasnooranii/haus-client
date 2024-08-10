@@ -2,7 +2,7 @@ import ReferImg from "../../../assets/Images/Home/Rafar-a-friend.png";
 
 const Refer = () => {
   return (
-    <div className="container mx-auto px-3 my-12 flex flex-col-reverse md:flex-row items-center">
+    <div className="container mx-auto px-3 my-24 flex flex-col-reverse md:flex-row items-center">
       <div className="space-y-6 text-center md:text-left flex-1">
         <h2 className="text-2xl font-helvetica hidden md:block">
           Refer A Friend And Get £25 Each
