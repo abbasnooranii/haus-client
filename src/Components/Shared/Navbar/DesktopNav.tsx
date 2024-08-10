@@ -13,24 +13,24 @@ const DesktopNav = () => {
   const links = (
     <>
       <li>
-        <a className="flex items-center hover:border-b hover:border-primary">
+        <a className="flex items-center border-b border-white hover:border-primary">
           About
         </a>
       </li>
       <li>
-        <a className=" flex items-center hover:border-b hover:border-primary gap-2">
+        <a className=" flex items-center border-b border-white hover:border-primary gap-2">
           Haus Students <LuCopySlash />
         </a>
       </li>
       <li>
-        <a className=" flex items-center hover:border-b hover:border-primary gap-2">
+        <a className=" flex items-center border-b border-white hover:border-primary gap-2">
           Contact Us <TbTriangleInvertedFilled />
         </a>
       </li>
       <li>
         <button
           onClick={() => setShowResources(true)}
-          className=" flex items-center hover:border-b hover:border-primary gap-2"
+          className=" flex items-center border-b border-white hover:border-primary gap-2"
         >
           Resources <GiHamburgerMenu className="" size={18} />
         </button>
@@ -146,7 +146,7 @@ const DesktopNav = () => {
   ];
   return (
     <div className="bg-base-100 hidden lg:flex">
-      <div className="navbar ">
+      <div className="navbar pt-3 pb-6 ">
         <div className="navbar-start">
           <div className="flex items-center gap-3">
             <Link to={"/"} className="h-10">
@@ -185,7 +185,8 @@ const DesktopNav = () => {
           </ul>
         </div>
       </div>
-      <div //
+      {/* Nested menus */}
+      <div
         className={`min-w-[100vw] absolute left-0 bg-[#f7f0e7] px-8 py-12 ${
           showResources ? "top-0" : "-top-full"
         } duration-500`}

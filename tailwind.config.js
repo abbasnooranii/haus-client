@@ -6,6 +6,7 @@ export default {
       colors: {
         lightPrimary: "#f7f0e7",
         textBlack: "#3D3D3C",
+        cGray: "#EEEEEE",
       },
     },
   },
@@ -25,6 +26,9 @@ export default {
             "border-width": "2px",
           },
           ".btn-outline.btn-primary:hover": {
+            color: "#fff",
+          },
+          ".btn.btn-primary.btn-filled": {
             color: "#fff",
           },
         },
