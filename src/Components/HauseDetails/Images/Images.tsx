@@ -1,6 +1,6 @@
 import DetailsSlider from "../../../Components/HauseDetails/DetailsSlider/DetailsSlider";
-import img1 from "../../assets/Images/Hauses/house_img1.png";
-import img2 from "../../assets/Images/Hauses/house_img2.png";
+import img1 from "../../../assets/Images/Hauses/house_img1.png";
+import img2 from "../../../assets/Images/Hauses/house_img2.png";
 
 const Images = () => {
   return (
