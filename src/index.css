@@ -19,6 +19,6 @@
 }
 
 /* ----------Home Page Google Review slider---- */
-.mySwiper {
+.mySwiper.review {
   padding: 30px 47px !important;
 }

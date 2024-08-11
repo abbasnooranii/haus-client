@@ -20,9 +20,9 @@ const Controller = () => {
       </div>
 
       {/* Other Controller */}
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:justify-between mt-3">
+      <div className="flex flex-col md:flex-row items-center gap-6 md:justify-between mt-3">
         <h2 className="text-xl font-medium">
-          <span className="border-b-2 border-primary pb-2">19</span> Properties
+          <span className="border-b-2 border-primary">19</span> Properties
           Listed
         </h2>
 

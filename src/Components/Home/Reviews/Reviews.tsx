@@ -27,7 +27,7 @@ const Reviews = () => {
             }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper max-w-[620px]"
+            className="mySwiper review max-w-[620px]"
           >
             <SwiperSlide>
               <Review />
