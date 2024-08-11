@@ -1,12 +1,6 @@
-import { Link } from "react-router-dom";
-import useSearchContext from "../../../Hooks/useSearchContext";
+import { SearchContextType } from "../../../Context/SearchContext";
 
-const Hero = () => {
-  const searchContext = useSearchContext();
-  if (!searchContext) {
-    return <h1> Something went wrong. </h1>;
-  }
-  const { search, setSearch } = searchContext;
+const MobileFilter = ({ search, setSearch }: SearchContextType) => {
   const tempRoom = [...Array(9).keys()];
 
   const handleRoomCountChange = (room: number) => {
@@ -14,7 +8,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="home-banner min-h-[464px] md:min-h-[540px]">
+    <div className="home-banner min-h-[464px] md:hidden">
       <div className="container mx-auto px-3 py-6">
         <div className="bg-white p-7 rounded max-w-[400px]">
           <h2 className="text-2xl font-bold text-center text-helvetica">
@@ -126,12 +120,9 @@ const Hero = () => {
               <option value={"London"}>London</option>
               <option value={"Toronto"}>Toronto</option>
             </select>
-            <Link
-              to="/hauses"
-              className="btn btn-filled btn-primary font-roboto w-full"
-            >
+            <button className="btn btn-filled btn-primary font-roboto w-full">
               Search
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -139,4 +130,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default MobileFilter;
