@@ -10,7 +10,7 @@ const Filter = () => {
   const { search, setSearch } = searchContext;
 
   return (
-    <div className="mb-24">
+    <div className="mt-12">
       <DesktopFilter search={search} setSearch={setSearch} />
       <MobileFilter search={search} setSearch={setSearch} />
     </div>

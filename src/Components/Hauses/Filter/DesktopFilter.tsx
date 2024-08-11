@@ -13,9 +13,7 @@ const DesktopFilter = ({ search, setSearch }: SearchContextType) => {
         onChange={(e) => setSearch({ ...search, type: e.target.value })}
         className="select select-bordered w-full max-w-xs"
       >
-        <option disabled value="to_let">
-          To Let
-        </option>
+        <option value="to_let">To Let</option>
         <option value="to_buy">To Buy</option>
       </select>
 

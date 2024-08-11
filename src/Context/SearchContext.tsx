@@ -9,7 +9,7 @@ type SearchCredentialsType = {
   location: string;
 };
 
-type SearchContextType = {
+export type SearchContextType = {
   search: SearchCredentialsType;
   setSearch: React.Dispatch<SetStateAction<SearchCredentialsType>>;
 };
