@@ -4,7 +4,7 @@ import img2 from "../../../assets/Images/Hauses/house_img2.png";
 
 const Images = () => {
   return (
-    <div className="container mx-auto px-3 my-6 grid grid-cols-1 md:grid-cols-3 ">
+    <div className="container mx-auto px-3 my-3 md:my-6 grid grid-cols-1 md:grid-cols-3 ">
       <div className="md:col-span-2 md:row-span-2 flex items-center">
         <DetailsSlider />
       </div>

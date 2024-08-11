@@ -1,3 +1,4 @@
+import DeskSpecification from "../../Components/HauseDetails/DeskSpecification/DeskSpecification";
 import Images from "../../Components/HauseDetails/Images/Images";
 import MobileSpecification from "../../Components/HauseDetails/MobileSpecification/MobileSpecification";
 import Filter from "../../Components/Hauses/Filter/Filter";
@@ -8,6 +9,7 @@ const HauseDetails = () => {
       <Filter />
       <MobileSpecification />
       <Images />
+      <DeskSpecification />
     </div>
   );
 };
