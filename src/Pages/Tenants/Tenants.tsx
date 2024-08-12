@@ -4,6 +4,7 @@ import Filter from "../../Components/Hauses/Filter/Filter";
 
 import HouseImg from "../../assets/Images/Tanants-similler/House-door.png";
 import HandImg from "../../assets/Images/Tanants-similler/Hand.png";
+import ReadyToMoving from "../../Components/Shared/Tanants-similler/ReadyToMoving/ReadyToMoving";
 
 const Tenants = () => {
   return (
@@ -22,6 +23,8 @@ const Tenants = () => {
         img={HandImg}
         flexStyle="lg:flex-row-reverse"
       />
+
+      <ReadyToMoving />
     </div>
   );
 };
