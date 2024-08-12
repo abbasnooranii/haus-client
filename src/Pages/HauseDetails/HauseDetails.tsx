@@ -1,4 +1,5 @@
 import DeskSpecification from "../../Components/HauseDetails/DeskSpecification/DeskSpecification";
+import GetInTouch from "../../Components/HauseDetails/GetInTouch/GetInTouch";
 import HausDetails from "../../Components/HauseDetails/HausDetails/HausDetails";
 import Images from "../../Components/HauseDetails/Images/Images";
 import MobileSpecification from "../../Components/HauseDetails/MobileSpecification/MobileSpecification";
@@ -12,6 +13,7 @@ const HauseDetails = () => {
       <Images />
       <DeskSpecification />
       <HausDetails />
+      <GetInTouch />
     </div>
   );
 };
