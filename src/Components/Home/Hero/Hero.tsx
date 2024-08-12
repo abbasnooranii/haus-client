@@ -14,7 +14,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="home-banner min-h-[464px] md:min-h-[540px]">
+    <div className="home-banner bg-image min-h-[464px] md:min-h-[540px]">
       <div className="container mx-auto px-3 py-6">
         <div className="bg-white p-7 rounded max-w-[400px]">
           <h2 className="text-2xl font-bold text-center text-helvetica">

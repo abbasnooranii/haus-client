@@ -3,6 +3,7 @@ import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home";
 import Hauses from "../Pages/Hauses/Hauses";
 import HauseDetails from "../Pages/HauseDetails/HauseDetails";
+import Tenants from "../Pages/Tenants/Tenants";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/hauses/:id",
         element: <HauseDetails />,
+      },
+      {
+        path: "/tenants",
+        element: <Tenants />,
       },
     ],
   },

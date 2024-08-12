@@ -41,6 +41,7 @@ const DesktopNav = () => {
     // Tanants
     {
       title: "Tenants",
+      link: "/tenants",
       child: [
         {
           title: "A Tenant’s Guide to Renting",
@@ -207,9 +208,11 @@ const DesktopNav = () => {
         <div className="grid grid-cols-7 mt-12">
           {resourcesArr.map((res, i) => (
             <div key={i}>
-              <h3 className="text-xl text-center font-roboto font-semibold mb-3">
-                {res.title}
-              </h3>
+              <Link to={res.link ? res.link : "/"}>
+                <h3 className="text-xl text-center font-roboto font-semibold mb-3">
+                  {res.title}
+                </h3>
+              </Link>
               <ul className="font-roboto space-y-4">
                 {res.child.map((link, i) => (
                   <li className="text-center" key={i + 100}>

@@ -10,13 +10,21 @@
 .font-roboto{
   font-family: "Roboto", sans-serif;
 }
-/* --------Home page banner----- */
-.home-banner{
-  background-image: url("./assets/Images/Home/hero-bg.png");
+
+/* -------- banner----- */
+.bg-image{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;  
 }
+.home-banner{
+  background-image: url("./assets/Images/Home/hero-bg.png");
+}
+.tanants-similler-banner{
+  background-image: url("./assets/Images/Tanants-similler/Common-bg.png");
+}
+
+
 
 /* ----------Home Page Google Review slider---- */
 .mySwiper.review {
