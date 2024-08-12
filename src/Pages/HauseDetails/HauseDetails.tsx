@@ -1,5 +1,5 @@
 import DeskSpecification from "../../Components/HauseDetails/DeskSpecification/DeskSpecification";
-import HausDescription from "../../Components/HauseDetails/HausDescription/HausDescription";
+import HausDetails from "../../Components/HauseDetails/HausDetails/HausDetails";
 import Images from "../../Components/HauseDetails/Images/Images";
 import MobileSpecification from "../../Components/HauseDetails/MobileSpecification/MobileSpecification";
 import Filter from "../../Components/Hauses/Filter/Filter";
@@ -11,7 +11,7 @@ const HauseDetails = () => {
       <MobileSpecification />
       <Images />
       <DeskSpecification />
-      <HausDescription />
+      <HausDetails />
     </div>
   );
 };
