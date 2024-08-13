@@ -1,10 +1,11 @@
-import { SearchContextType } from "../../../Context/SearchContext";
+import useSearchContext from "../../../Hooks/useSearchContext";
 
-const DesktopFilter = ({ search, setSearch }: SearchContextType) => {
-  if (!search) {
+const DesktopFilter = () => {
+  const searchContext = useSearchContext();
+  if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
-
+  const { search, setSearch } = searchContext;
   return (
     <div className=" container mx-auto px-3 gap-2 hidden md:flex">
       {/* Type */}

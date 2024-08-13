@@ -33,9 +33,12 @@ const DesktopNav = () => {
         </a>
       </li>
       <li>
-        <a className=" flex items-center border-b border-white hover:border-primary gap-2">
+        <Link
+          to="/contact-us"
+          className=" flex items-center border-b border-white hover:border-primary gap-2"
+        >
           Contact Us <TbTriangleInvertedFilled />
-        </a>
+        </Link>
       </li>
       <li>
         <button

@@ -1,6 +1,12 @@
-import { SearchContextType } from "../../../Context/SearchContext";
+import useSearchContext from "../../../Hooks/useSearchContext";
 
-const MobileFilter = ({ search, setSearch }: SearchContextType) => {
+const MobileFilter = () => {
+  const searchContext = useSearchContext();
+  if (!searchContext) {
+    return <h1> Something went wrong. </h1>;
+  }
+  const { search, setSearch } = searchContext;
+
   const tempRoom = [...Array(9).keys()];
 
   const handleRoomCountChange = (room: number) => {
