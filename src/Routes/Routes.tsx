@@ -7,6 +7,7 @@ import Tenants from "../Pages/Tenants/Tenants";
 import Landlords from "../Pages/Landlords/Landlords";
 import BtlInvestors from "../Pages/BtlInvestors/BtlInvestors";
 import Buyers from "../Pages/Buyers/Buyers";
+import Sellers from "../Pages/Sellers/Sellers";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/buyers",
         element: <Buyers />,
+      },
+      {
+        path: "/sellers",
+        element: <Sellers />,
       },
     ],
   },

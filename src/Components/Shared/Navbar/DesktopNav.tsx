@@ -100,27 +100,34 @@ const DesktopNav = () => {
     // Sellers
     {
       title: "Sellers",
+      link: "/sellers",
       child: [
         {
           title: "Conveyancing",
+          link: "/sellers",
         },
         {
           title: "Mortgages & Protections",
+          link: "/sellers",
         },
         {
           title: "Legal",
+          link: "/sellers",
         },
         {
           title: "Sellers Guide",
+          link: "/sellers",
         },
         {
           title: "Tips for Selling",
         },
         {
           title: "What Type of Seller Are You?",
+          link: "/sellers",
         },
         {
           title: "Why Haus?",
+          link: "/sellers",
         },
       ],
     },

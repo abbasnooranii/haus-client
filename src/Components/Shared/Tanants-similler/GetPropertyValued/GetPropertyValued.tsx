@@ -1,20 +1,19 @@
 import { FcCalculator } from "react-icons/fc";
 
-const GetPropertyValued = () => {
+const GetPropertyValued = ({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) => {
   return (
-    <div className="bg-lightPrimary pt-24 md:pt-28 pb-24 md:pb-48 my-12 md:my-0">
+    <div className="bg-lightPrimary pt-24 md:pt-28 pb-24 md:pb-48">
       <div className="container mx-auto px-16 flex flex-col-reverse md:flex-row items-center justify-between gap-36 md:gap-6">
         {/* ------Left--------- */}
         <div className="space-y-3 max-w-[470px]">
-          <h2 className="text-3xl font-roboto font-semibold">
-            GET YOUR PROPERTY VALUED BY A LOCAL EXPERT
-          </h2>
-          <p>
-            Are you looking to get your rental property valued by a local
-            expert? Arranging a valuation couldn't get easier. For an accurate
-            and in-depth valuation from one of our expert valuers, please call
-            your local branch or use the online booking tool.
-          </p>
+          <h2 className="text-3xl font-roboto font-semibold">{title}</h2>
+          <p>{desc}</p>
           <p>
             Leeds - 0113 323 1800 <br />
             Rotherham - 01226 414 115 <br />

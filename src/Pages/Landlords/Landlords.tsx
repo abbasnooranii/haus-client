@@ -11,7 +11,13 @@ const Landlords = () => {
     <div>
       <Filter />
       <Banner title="LANDLORDS" />
-      <GetPropertyValued />
+      <GetPropertyValued
+        title="GET YOUR PROPERTY VALUED BY A LOCAL EXPERT"
+        desc="Are you looking to get your rental property valued by a local
+            expert? Arranging a valuation couldn't get easier. For an accurate
+            and in-depth valuation from one of our expert valuers, please call
+            your local branch or use the online booking tool."
+      />
       <ImgDescSec
         title="LETTINGS PROPERTY MANAGEMENT"
         desc="The Landlord and Tenant Act 1985 requires you as a landlord to maintain the structure of the building, the sanitation and the supply of services. In addition, you would be expected within the terms of the tenancy agreement to replace or repair any items..."
