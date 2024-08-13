@@ -6,6 +6,7 @@ import HauseDetails from "../Pages/HauseDetails/HauseDetails";
 import Tenants from "../Pages/Tenants/Tenants";
 import Landlords from "../Pages/Landlords/Landlords";
 import BtlInvestors from "../Pages/BtlInvestors/BtlInvestors";
+import Buyers from "../Pages/Buyers/Buyers";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/btl-investors",
         element: <BtlInvestors />,
+      },
+      {
+        path: "/buyers",
+        element: <Buyers />,
       },
     ],
   },

@@ -81,15 +81,19 @@ const DesktopNav = () => {
     // Buyers
     {
       title: "Buyers",
+      link: "/buyers",
       child: [
         {
           title: "Buyers Guide",
+          link: "/buyers",
         },
         {
           title: "Conveyancing",
+          link: "/buyers",
         },
         {
           title: "Mortgages & Protections",
+          link: "/buyers",
         },
       ],
     },
