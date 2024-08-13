@@ -11,7 +11,7 @@ const ImgDescSec = ({
 }) => {
   return (
     <div
-      className={`container mx-auto px-5 flex flex-col items-center ${flexStyle} gap-6 md:gap-12 my-12`}
+      className={`container mx-auto px-5 flex flex-col items-center ${flexStyle} gap-6 md:gap-12 my-24`}
     >
       <h1 className="text-xl font-helvetica md:hidden">{title}</h1>
       {/* ------Image---- */}
