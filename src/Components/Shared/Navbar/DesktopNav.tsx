@@ -55,7 +55,7 @@ const DesktopNav = () => {
       child: [
         {
           title: "A Tenant’s Guide to Renting",
-          link: "/tenants",
+          link: "/tenants-guide-to-renting",
         },
         {
           title: "Guarantors",
