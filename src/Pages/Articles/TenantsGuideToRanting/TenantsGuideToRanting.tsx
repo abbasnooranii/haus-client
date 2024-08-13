@@ -3,6 +3,7 @@ import Filter from "../../../Components/Hauses/Filter/Filter";
 import { Helmet } from "react-helmet";
 import MainTitleDesc from "../../../Components/Shared/Articles/MainTitleDesc/MainTitleDesc";
 import SecoundaryTitleDesc from "../../../Components/Shared/Articles/SecoundaryTitleDesc/SecoundaryTitleDesc";
+import ArticleCard from "../../../Components/Shared/Articles/ArticleCard/ArticleCard";
 
 const TenantsGuideToRanting = () => {
   return (
@@ -45,6 +46,12 @@ const TenantsGuideToRanting = () => {
         title="HOME SWEET HOME"
         desc="As you get settled, safely file any paperwork and make sure the administrative side is sorted. Your landlord is legally obliged to protect your deposit within an accredited scheme such as the TDS (Tenancy Deposit Scheme), which gives you access to dispute resolution services, and compensation if you don’t get the deposit back when you leave. They should also give you details of emergency contacts, and other useful property information like where the fuse box and meters are."
       />
+
+      <div className="container mx-auto px-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+        <ArticleCard />
+        <ArticleCard />
+        <ArticleCard />
+      </div>
     </div>
   );
 };
