@@ -5,12 +5,14 @@ import Filter from "../../Components/Hauses/Filter/Filter";
 import HouseImg from "../../assets/Images/Tanants-similler/House-door.png";
 import HandImg from "../../assets/Images/Tanants-similler/Hand.png";
 import ReadyToMoving from "../../Components/Shared/Tanants-similler/ReadyToMoving/ReadyToMoving";
+import GetPropertyValued from "../../Components/Shared/Tanants-similler/GetPropertyValued/GetPropertyValued";
 
-const Tenants = () => {
+const Landlords = () => {
   return (
     <div>
       <Filter />
-      <Banner title="TENANTS" />
+      <Banner title="LANDLORDS" />
+      <GetPropertyValued />
       <ImgDescSec
         title="A TENANTS GUIDE TO RENTING"
         desc="When you’re looking to rent a home, it can often feel like the pressure is on to make a quick decision or you’ll lose out. Don’t let these feelings get the best of you! It can take some careful thought and consideration to find the right place for you, so it’s worth being prepared."
@@ -29,4 +31,4 @@ const Tenants = () => {
   );
 };
 
-export default Tenants;
+export default Landlords;

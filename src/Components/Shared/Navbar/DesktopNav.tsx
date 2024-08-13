@@ -8,6 +8,16 @@ import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 
+type ResourcesChildType = {
+  title: string;
+  link?: string;
+};
+type ResourcesLinkType = {
+  title: string;
+  link?: string;
+  child: ResourcesChildType[];
+};
+
 const DesktopNav = () => {
   const [showResources, setShowResources] = useState<boolean>(false);
   const links = (
@@ -37,7 +47,7 @@ const DesktopNav = () => {
       </li>
     </>
   );
-  const resourcesArr = [
+  const resourcesArr: ResourcesLinkType[] = [
     // Tanants
     {
       title: "Tenants",
@@ -45,9 +55,11 @@ const DesktopNav = () => {
       child: [
         {
           title: "A Tenant’s Guide to Renting",
+          link: "/tenants",
         },
         {
           title: "Guarantors",
+          link: "/tenants",
         },
       ],
     },
@@ -108,21 +120,27 @@ const DesktopNav = () => {
     // Landlords
     {
       title: "Landlords",
+      link: "/landlords",
       child: [
         {
           title: "Lettings Property Management",
+          link: "/landlords",
         },
         {
           title: "Residential Lettings",
+          link: "/landlords",
         },
         {
           title: "Safety Regulations and Responsibilities ",
+          link: "/landlords",
         },
         {
           title: "Student Lettings",
+          link: "/landlords",
         },
         {
           title: "Why Use an Agent?",
+          link: "/landlords",
         },
       ],
     },
@@ -214,14 +232,14 @@ const DesktopNav = () => {
                 </h3>
               </Link>
               <ul className="font-roboto space-y-4">
-                {res.child.map((link, i) => (
+                {res.child.map((nested, i) => (
                   <li className="text-center" key={i + 100}>
-                    <a
-                      href="#"
+                    <Link
+                      to={nested?.link ? nested.link : "/"}
                       className="text-sm hover:border-b hover:border-primary"
                     >
-                      {link.title}
-                    </a>
+                      {nested.title}
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -20,7 +20,7 @@ const ReadyToMoving = () => {
         {/* ------Left------ */}
         <div className="md:w-1/2">
           {/* -------Haus Sales and Lettings Leeds------ */}
-          <div className=" space-y-4">
+          <div className=" space-y-4 text-center md:text-left flex flex-col items-center md:items-start">
             <h6 className="font-helvetica mb-2">
               Haus Sales and Lettings Leeds
             </h6>
@@ -43,7 +43,7 @@ const ReadyToMoving = () => {
             <button className="btn btn-outline btn-primary">View Office</button>
           </div>
           {/* -------Haus Sales and Lettings Leeds------ */}
-          <div className=" space-y-4 mt-6">
+          <div className=" space-y-4 mt-6 ext-center md:text-left flex flex-col items-center md:items-start">
             <h6 className="font-helvetica mb-2">
               Haus Sales and Lettings South Yorkshire
             </h6>

@@ -22,7 +22,6 @@ export default {
           // neutral: "#3d4451",
           "base-100": "#ffffff",
           ".btn": {
-            "border-radious": "2px",
             "border-width": "2px",
           },
           ".btn-outline.btn-primary:hover": {
