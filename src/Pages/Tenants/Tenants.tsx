@@ -5,6 +5,7 @@ import Filter from "../../Components/Hauses/Filter/Filter";
 import HouseImg from "../../assets/Images/Tanants-similler/House-door.png";
 import HandImg from "../../assets/Images/Tanants-similler/Hand.png";
 import ReadyToMoving from "../../Components/Shared/Tanants-similler/ReadyToMoving/ReadyToMoving";
+import BottomDesc from "../../Components/Shared/Tanants-similler/BottomDesc/BottomDesc";
 
 const Tenants = () => {
   return (
@@ -22,6 +23,14 @@ const Tenants = () => {
         desc="In order to secure a property, we ask all tenants to submit details for credit and reference checking. If you’re unable to supply enough detail, or there is any other problem, you may be asked to supply a guarantor, who will also need to pass referencing."
         img={HandImg}
         flexStyle="lg:flex-row-reverse"
+      />
+
+      <BottomDesc
+        title="READY TO GET MOVING?"
+        desc="Our experienced team are ready to help you find your perfect property,
+        or just answer any questions you may have about the renting process. You
+        are very welcome to get intouch anytime, and we are more than happy to
+        help."
       />
 
       <ReadyToMoving />

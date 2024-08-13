@@ -6,16 +6,6 @@ import { RiInstagramFill } from "react-icons/ri";
 const ReadyToMoving = () => {
   return (
     <div className="container mx-auto px-5">
-      <h1 className="text-xl md:text-2xl font-roboto font-bold text-center">
-        READY TO GET MOVING?
-      </h1>
-      <p className="text-center max-w-[540px] mx-auto my-6">
-        Our experienced team are ready to help you find your perfect property,
-        or just answer any questions you may have about the renting process. You
-        are very welcome to get intouch anytime, and we are more than happy to
-        help.
-      </p>
-
       <div className="flex flex-col md:flex-row gap-6 md:gap-16 mt-24 mb-12">
         {/* ------Left------ */}
         <div className="md:w-1/2">

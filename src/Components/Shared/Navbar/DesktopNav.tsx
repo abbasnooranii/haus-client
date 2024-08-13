@@ -66,12 +66,15 @@ const DesktopNav = () => {
     // BTL Investors
     {
       title: "BTL Investors",
+      link: "/btl-investors",
       child: [
         {
           title: "Buying and Selling Investment Properties",
+          link: "/btl-investors",
         },
         {
           title: "Property Sourcing",
+          link: "/btl-investors",
         },
       ],
     },
