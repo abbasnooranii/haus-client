@@ -173,9 +173,11 @@ const DesktopNav = () => {
     // Refer a Friend
     {
       title: "Refer a Friend",
+      link: "/refer-a-friend",
       child: [
         {
           title: "Claim Reward",
+          link: "/refer-a-friend",
         },
       ],
     },
