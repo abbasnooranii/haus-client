@@ -4,6 +4,7 @@ import ResponsiveBanner from "../../Components/Shared/Tanants-similler/Banner/Re
 import ContactUsMap from "../../Components/ContactUs/ContactUsMap/ContactUsMap";
 import LearnAboutHaus from "../../Components/ContactUs/LearnAboutHaus/LearnAboutHaus";
 import ServicesAvailable from "../../Components/ContactUs/ServicesAvailable/ServicesAvailable";
+import MeetTheTeam from "../../Components/ContactUs/MeetTheTeam/MeetTheTeam";
 
 const ContactUs = () => {
   return (
@@ -13,11 +14,15 @@ const ContactUs = () => {
         {/* <meta name="description" content="Helmet application" /> */}
       </Helmet>
       <DesktopFilter />
-      <ResponsiveBanner title="HAUS SALES AND LETTINGS LEEDS" width="420px" />
+      <ResponsiveBanner
+        title="HAUS SALES AND LETTINGS LEEDS"
+        width="max-w-[420px]"
+      />
       <ContactUsMap />
       <div className="home-banner min-h-[500px] my-12"></div>
       <LearnAboutHaus />
       <ServicesAvailable />
+      <MeetTheTeam />
     </div>
   );
 };
