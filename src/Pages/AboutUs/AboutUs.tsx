@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ComonTitleDesc from "../../Components/AboutUs/ComonTitleDesc/ComonTitleDesc";
 import Reviews from "../../Components/Home/Reviews/Reviews";
 import ResponsiveBanner from "../../Components/Shared/Tanants-similler/Banner/ResponsiveBanner";
@@ -69,10 +70,12 @@ const AboutUs = () => {
               rise, and so are Haus Properties, we'd love you to join us for the
               next step of our journey.
             </p>
-            <button className="btn btn-outline btn-primary mx-4">
-              {" "}
+            <Link
+              to="/virtual-tours"
+              className="btn btn-outline btn-primary mx-4"
+            >
               Learn More
-            </button>
+            </Link>
           </div>
           <div className="flex-1">
             <img src={VirtualImg} alt="" />

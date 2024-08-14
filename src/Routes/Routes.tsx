@@ -12,6 +12,7 @@ import TenantsGuideToRanting from "../Pages/Articles/TenantsGuideToRanting/Tenan
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ReferFriend from "../Pages/ReferFriend/ReferFriend";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import VirtualTours from "../Pages/Articles/VirtualTours/VirtualTours";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "/refer-a-friend",
         element: <ReferFriend />,
+      },
+      {
+        path: "/virtual-tours",
+        element: <VirtualTours />,
       },
     ],
   },
