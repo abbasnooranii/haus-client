@@ -11,6 +11,7 @@ import Sellers from "../Pages/Sellers/Sellers";
 import TenantsGuideToRanting from "../Pages/Articles/TenantsGuideToRanting/TenantsGuideToRanting";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ReferFriend from "../Pages/ReferFriend/ReferFriend";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/refer-a-friend",

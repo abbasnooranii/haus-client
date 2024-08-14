@@ -23,9 +23,12 @@ const DesktopNav = () => {
   const links = (
     <>
       <li>
-        <a className="flex items-center border-b border-white hover:border-primary">
+        <Link
+          to="/about-us"
+          className="flex items-center border-b border-white hover:border-primary"
+        >
           About
-        </a>
+        </Link>
       </li>
       <li>
         <a className=" flex items-center border-b border-white hover:border-primary gap-2">
