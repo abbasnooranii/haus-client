@@ -1,4 +1,3 @@
-import React from "react";
 import { FaHeart, FaShare, FaShower } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdBed } from "react-icons/md";
