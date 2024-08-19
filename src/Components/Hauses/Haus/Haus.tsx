@@ -3,8 +3,9 @@ import CardSlider from "./CardSlider";
 import LocationRooms from "./Location&Rooms";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { PropertyType } from "../../../types/PropertyType";
 
-const Haus = () => {
+const Haus = ({ property }: { property: PropertyType }) => {
   return (
     <Link to={`/hauses/1`} className="block">
       <div className="border border-gray-400 rounded p-4 flex flex-col md:flex-row md:gap-8">

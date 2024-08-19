@@ -77,11 +77,22 @@ const Hero = () => {
                   setSearch({ ...search, min_price: Number(e.target.value) })
                 }
               >
-                <option disabled value={0}>
-                  Min Price
+                <option disabled value="0">
+                  NO MIN
                 </option>
-                <option value={15}>$15</option>
-                <option value={20}>$20</option>
+                <option value="300">£300 PCM</option>
+                <option value="400">£400 PCM</option>
+                <option value="500">£500 PCM</option>
+                <option value="600">£600 PCM</option>
+                <option value="700">£700 PCM</option>
+                <option value="800">£800 PCM</option>
+                <option value="900">£900 PCM</option>
+                <option value="1000">£1000 PCM</option>
+                <option value="1200">£1200 PCM</option>
+                <option value="1400">£1400 PCM</option>
+                <option value="1600">£1600 PCM</option>
+                <option value="1800">£1800 PCM</option>
+                <option value="2000">£2000 PCM</option>
               </select>
               <select
                 value={search.max_price}
@@ -90,11 +101,22 @@ const Hero = () => {
                   setSearch({ ...search, max_price: Number(e.target.value) })
                 }
               >
-                <option disabled value={0}>
-                  Max Price
+                <option disabled value="0">
+                  NO MAX
                 </option>
-                <option value={15}>$15</option>
-                <option value={20}>$20</option>
+                <option value="300">£300 PCM</option>
+                <option value="400">£400 PCM</option>
+                <option value="500">£500 PCM</option>
+                <option value="600">£600 PCM</option>
+                <option value="700">£700 PCM</option>
+                <option value="800">£800 PCM</option>
+                <option value="900">£900 PCM</option>
+                <option value="1000">£1000 PCM</option>
+                <option value="1200">£1200 PCM</option>
+                <option value="1400">£1400 PCM</option>
+                <option value="1600">£1600 PCM</option>
+                <option value="1800">£1800 PCM</option>
+                <option value="2000">£2000 PCM</option>
               </select>
             </div>
 
@@ -106,14 +128,15 @@ const Hero = () => {
               }
               className="select select-bordered w-full "
             >
-              <option disabled value="">
-                Property Type
-              </option>
-              <option value={"House"}>House</option>
-              <option value={"Office"}>Office</option>
+              <option value={""}>ANY TYPE</option>
+              <option value={"0"}>House</option>
+              <option value={"28"}>Apartment</option>
+              <option value={"8"}>Flat</option>
+              <option value={"9"}>Studio</option>
+              <option value={"48"}>Room Only</option>
             </select>
             {/* Location */}
-            <select
+            {/* <select
               value={search.location}
               onChange={(e) =>
                 setSearch({ ...search, location: e.target.value })
@@ -125,7 +148,16 @@ const Hero = () => {
               </option>
               <option value={"London"}>London</option>
               <option value={"Toronto"}>Toronto</option>
-            </select>
+            </select> */}
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              value={search.location}
+              onChange={(e) =>
+                setSearch({ ...search, location: e.target.value })
+              }
+              placeholder="Location"
+            />
             <Link
               to="/hauses"
               className="btn btn-filled btn-primary font-roboto w-full"
