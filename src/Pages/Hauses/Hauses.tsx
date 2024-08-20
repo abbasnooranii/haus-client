@@ -58,6 +58,7 @@ const Hauses = () => {
     <div className="">
       <Filter refetchProperties={refetch} />
       <Controller
+        propertiesCount={properties?.length}
         setSelectedPage={setSelectedPage}
         selectedPage={selectedPage}
       />

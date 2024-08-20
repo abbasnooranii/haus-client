@@ -6,11 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { SetStateAction } from "react";
 
 const Controller = ({
+  propertiesCount,
   selectedPage,
   setSelectedPage,
 }: {
   selectedPage: number;
   setSelectedPage: React.Dispatch<SetStateAction<number>>;
+  propertiesCount: number | undefined;
 }) => {
   const axiosPublic = useAxiosPublic();
 
@@ -59,8 +61,10 @@ const Controller = ({
       {/* Other Controller */}
       <div className="flex flex-col md:flex-row items-center gap-6 md:justify-between mt-3">
         <h2 className="text-xl font-medium">
-          <span className="border-b-2 border-primary">19</span> Properties
-          Listed
+          <span className="border-b-2 border-primary">
+            {propertiesCount || 0}
+          </span>{" "}
+          Properties Listed
         </h2>
 
         {/* Pagination */}

@@ -19,7 +19,7 @@ const Haus = ({ property }: { property: PropertyType }) => {
           </p>
           {/* -----Slider----- */}
           <div className="max-h-[200px] my-3">
-            <CardSlider />
+            <CardSlider property={property} />
           </div>
           {/* -----Price------ */}
           <div className="flex justify-between px-2">
