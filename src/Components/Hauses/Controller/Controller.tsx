@@ -3,15 +3,19 @@ import radioBtn from "../../../assets/Logos/Radio_Button_01.png";
 
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { SetStateAction } from "react";
+import { ChangeEvent, SetStateAction } from "react";
 
 const Controller = ({
   propertiesCount,
   selectedPage,
   setSelectedPage,
+  sort,
+  handleSortChange,
 }: {
   selectedPage: number;
   setSelectedPage: React.Dispatch<SetStateAction<number>>;
+  sort: string;
+  handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   propertiesCount: number | undefined;
 }) => {
   const axiosPublic = useAxiosPublic();
@@ -28,7 +32,6 @@ const Controller = ({
     },
   });
 
-  console.log(pageCount);
   // const { search } = searchContext;
   if (isLoading) {
     return (
@@ -62,8 +65,8 @@ const Controller = ({
       <div className="flex flex-col md:flex-row items-center gap-6 md:justify-between mt-3">
         <h2 className="text-xl font-medium">
           <span className="border-b-2 border-primary">
-            {propertiesCount || 0}
-          </span>{" "}
+            {propertiesCount || 0}{" "}
+          </span>
           Properties Listed
         </h2>
 
@@ -115,15 +118,17 @@ const Controller = ({
 
         {/* Sort By */}
         <select
-          // value={search.type}
-          // onChange={(e) => setSearch({ ...search, type: e.target.value })}
-          defaultValue=""
+          value={sort}
+          onChange={handleSortChange}
           className="select select-bordered w-full max-w-[125px]"
         >
           <option disabled value="">
             Sort By
           </option>
-          <option value="price">Price</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="price-asc">Price - Ascending</option>
+          <option value="price-des">Price - Descending</option>
         </select>
       </div>
     </div>

@@ -18,7 +18,7 @@ const Haus = ({ property }: { property: PropertyType }) => {
             <strong>Property ID:</strong> {property.AGENT_REF}
           </p>
           {/* -----Slider----- */}
-          <div className="max-h-[200px] my-3">
+          <div className="max-h-[200px] lg:min-h-[200px] lg:min-w-[520px] my-3">
             <CardSlider property={property} />
           </div>
           {/* -----Price------ */}
