@@ -2,14 +2,19 @@ import { FaHeart, FaShare, FaShower } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdBed } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
+import { PropertyType } from "../../../types/PropertyType";
 
-const MobileSpecification = () => {
+const MobileSpecification = ({
+  property,
+}: {
+  property: PropertyType | undefined;
+}) => {
   return (
     <div className="md:hidden my-6 container mx-auto px-5">
       {/* ------Location and rooms-------- */}
       <div className="max-w-[400px] md:px-0">
         <p className="font-helvetica flex items-center gap-3 md:gap-4 text-sm md:text-base mb-2">
-          <FaLocationDot size={20} /> Bentley Grove, Meanwood, Leeds
+          <FaLocationDot size={20} /> {property?.DISPLAY_ADDRESS}
         </p>
 
         <div className="flex flex-col md:flex-row md:justify-between md:mt-3 gap-2 text-sm md:text-base">
@@ -30,7 +35,7 @@ const MobileSpecification = () => {
         </div>
       </div>
       <p className="flex md:justify-end text-xs md:text-sm  my-3">
-        <strong>Property ID:</strong> 1748r
+        <strong>Property ID:</strong> {property?.AGENT_REF}
       </p>
 
       {/* --------Actions-------- */}
