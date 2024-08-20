@@ -29,41 +29,48 @@ const Hauses = () => {
           searchContext?.search.location
         }&selectedPage=${selectedPage}`
       );
-      setProperties(res.data);
+      sortFunc(sort, res.data);
       return res.data;
     },
   });
 
-  const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSort(value);
-    if (value === "price-asc") {
-      const sortedProperties = properties.sort(
+  const sortFunc = (sortby: string, defaultProperties?: PropertyType[]) => {
+    const allProp = defaultProperties ? defaultProperties : [...properties];
+
+    if (sortby === "price-asc") {
+      const sortedProperties = allProp.sort(
         (a, b) => parseFloat(a.PRICE) - parseFloat(b.PRICE)
       );
-      setProperties(sortedProperties);
-    } else if (value === "price-des") {
-      const sortedProperties = properties.sort(
+      return setProperties(sortedProperties);
+    } else if (sortby === "price-des") {
+      const sortedProperties = allProp.sort(
         (a, b) => parseFloat(b.PRICE) - parseFloat(a.PRICE)
       );
-      setProperties(sortedProperties);
-    } else if (value === "newest") {
-      const sortedProperties = properties.sort(
+      return setProperties(sortedProperties);
+    } else if (sortby === "newest") {
+      const sortedProperties = allProp.sort(
         (a, b) =>
           new Date(a.LET_DATE_AVAILABLE).getTime() -
           new Date(b.LET_DATE_AVAILABLE).getTime()
       );
-      setProperties(sortedProperties);
-    } else if (value === "oldest") {
-      const sortedProperties = properties.sort(
+      return setProperties(sortedProperties);
+    } else if (sortby === "oldest") {
+      const sortedProperties = allProp.sort(
         (a, b) =>
           new Date(b.LET_DATE_AVAILABLE).getTime() -
           new Date(a.LET_DATE_AVAILABLE).getTime()
       );
-      setProperties(sortedProperties);
+      return setProperties(sortedProperties);
     }
+    return setProperties(allProp);
   };
-  console.log(properties);
+
+  const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setSort(value);
+    sortFunc(value);
+  };
+
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
