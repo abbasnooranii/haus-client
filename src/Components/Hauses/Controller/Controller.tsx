@@ -1,11 +1,48 @@
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
 import radioBtn from "../../../assets/Logos/Radio_Button_01.png";
-import { useState } from "react";
 
-const Controller = () => {
-  const [selectedPage, setSelectedPage] = useState<number>(1);
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import { SetStateAction } from "react";
 
-  const totalPage = [...Array(3).keys()];
+const Controller = ({
+  selectedPage,
+  setSelectedPage,
+}: {
+  selectedPage: number;
+  setSelectedPage: React.Dispatch<SetStateAction<number>>;
+}) => {
+  const axiosPublic = useAxiosPublic();
+
+  const {
+    data: pageCount,
+    isLoading,
+    isError,
+  } = useQuery<{ count: number }>({
+    queryKey: ["property-count"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/property/page-count");
+      return res.data;
+    },
+  });
+
+  console.log(pageCount);
+  // const { search } = searchContext;
+  if (isLoading) {
+    return (
+      <div className="w-full flex justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  } else if (isError) {
+    return (
+      <div className="w-full flex justify-center">
+        <h2 className="text-red-600">There was an error</h2>
+      </div>
+    );
+  }
+
+  const totalPage = [...Array(pageCount?.count).keys()];
 
   return (
     <div className="container mx-auto px-3 my-8">
@@ -38,19 +75,30 @@ const Controller = () => {
 
           {/*Pages */}
           <div className="flex gap-2">
-            {totalPage.map((page) => (
-              <button
-                key={page}
-                className={
-                  page + 1 === selectedPage
-                    ? "border border-gray-500  px-[5px] rounded"
-                    : ""
-                }
-                onClick={() => setSelectedPage(page + 1)}
-              >
-                {page + 1}
-              </button>
-            ))}
+            {selectedPage > 2 && "..."}
+
+            {totalPage.map((page) => {
+              if (
+                selectedPage + 1 === page + 1 ||
+                selectedPage === page + 1 ||
+                selectedPage - 1 === page + 1
+              ) {
+                return (
+                  <button
+                    key={page}
+                    className={
+                      page + 1 === selectedPage
+                        ? "border border-gray-500  px-[5px] rounded"
+                        : ""
+                    }
+                    onClick={() => setSelectedPage(page + 1)}
+                  >
+                    {page + 1}
+                  </button>
+                );
+              }
+            })}
+            {pageCount && selectedPage < pageCount?.count - 1 && "..."}
           </div>
           {/* Right Btn */}
           <button

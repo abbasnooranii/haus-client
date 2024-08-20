@@ -5,10 +5,12 @@ import Haus from "../../Components/Hauses/Haus/Haus";
 import useSearchContext from "../../Hooks/useSearchContext";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { PropertyType } from "../../types/PropertyType";
+import { useState } from "react";
 
 const Hauses = () => {
   const searchContext = useSearchContext();
   const axiosPublic = useAxiosPublic();
+  const [selectedPage, setSelectedPage] = useState<number>(1);
 
   const {
     data: properties,
@@ -16,7 +18,7 @@ const Hauses = () => {
     isLoading,
     isError,
   } = useQuery<PropertyType[]>({
-    queryKey: ["properties"],
+    queryKey: ["properties", selectedPage],
     enabled: !!searchContext,
     queryFn: async () => {
       const res = await axiosPublic.get(
@@ -26,7 +28,9 @@ const Hauses = () => {
           searchContext?.search.max_price
         }&min_price=${searchContext?.search.min_price}&prop_sub_id=${
           searchContext?.search.property_type
-        }&location=${searchContext?.search.location}`
+        }&location=${
+          searchContext?.search.location
+        }&selectedPage=${selectedPage}`
       );
       return res.data;
     },
@@ -53,7 +57,10 @@ const Hauses = () => {
   return (
     <div className="">
       <Filter refetchProperties={refetch} />
-      <Controller />
+      <Controller
+        setSelectedPage={setSelectedPage}
+        selectedPage={selectedPage}
+      />
       {/*---------- Hauses -----------*/}
       <div className="container mx-auto px-3 my-12 space-y-3">
         {properties && properties.length > 0 ? (
