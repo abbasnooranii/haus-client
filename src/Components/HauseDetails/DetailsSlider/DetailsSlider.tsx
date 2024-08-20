@@ -75,7 +75,11 @@ const DetailsSlider = ({
                   src={`${import.meta.env.VITE_API_URL}/api/images/${
                     (property as Record<string, string>)[name]
                   }`}
-                  alt={property?.MEDIA_IMAGE_TEXT_01}
+                  alt={
+                    (property as Record<string, string>)[
+                      `${name.slice(0, 11)}_TEXT_${name.slice(-2)}`
+                    ]
+                  }
                   className="w-full h-full object-cover"
                   onError={(
                     e: React.SyntheticEvent<HTMLImageElement, Event>
@@ -94,26 +98,26 @@ const DetailsSlider = ({
   );
 };
 
-const Slide = ({ imgSrc, imgAlt }: { imgSrc: string; imgAlt: string }) => {
-  return (
-    <SwiperSlide>
-      <div className="">
-        <img
-          src={imgSrc}
-          alt={imgAlt}
-          className="w-full h-full object-cover"
-          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-            const target = e.currentTarget;
-            target.onerror = null;
-            target.src = img3;
-            // `${
-            //   import.meta.env.VITE_API_URL
-            // }/api/images/big_image.png `;
-          }}
-        />
-      </div>
-    </SwiperSlide>
-  );
-};
+// const Slide = ({ imgSrc, imgAlt }: { imgSrc: string; imgAlt: string }) => {
+//   return (
+//     <SwiperSlide>
+//       <div className="">
+//         <img
+//           src={imgSrc}
+//           alt={imgAlt}
+//           className="w-full h-full object-cover"
+//           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+//             const target = e.currentTarget;
+//             target.onerror = null;
+//             target.src = img3;
+//             // `${
+//             //   import.meta.env.VITE_API_URL
+//             // }/api/images/big_image.png `;
+//           }}
+//         />
+//       </div>
+//     </SwiperSlide>
+//   );
+// };
 
 export default DetailsSlider;
