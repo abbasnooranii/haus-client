@@ -26,9 +26,11 @@ const Haus = ({ property }: { property: PropertyType }) => {
             <h1 className=" text-xl md:text-2xl">
               £{property.PRICE} <span className="text-sm">PCM</span>
             </h1>
-            <h1 className=" text-xl md:text-2xl">
-              £{property.LET_BOND} <span className="text-sm">Deposite</span>
-            </h1>
+            {property.AGENT_REF.includes("r") && (
+              <h1 className=" text-xl md:text-2xl">
+                £{property.LET_BOND} <span className="text-sm">DEPOSITE</span>
+              </h1>
+            )}
           </div>
         </div>
         {/* --------Right Section---------- */}

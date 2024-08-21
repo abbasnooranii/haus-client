@@ -4,14 +4,17 @@ import radioBtn from "../../../assets/Logos/Radio_Button_01.png";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { ChangeEvent, SetStateAction } from "react";
+import { PropertyType } from "../../../types/PropertyType";
 
 const Controller = ({
+  properties,
   propertiesCount,
   selectedPage,
   setSelectedPage,
   sort,
   handleSortChange,
 }: {
+  properties: PropertyType[];
   selectedPage: number;
   setSelectedPage: React.Dispatch<SetStateAction<number>>;
   sort: string;
@@ -19,7 +22,6 @@ const Controller = ({
   propertiesCount: number | undefined;
 }) => {
   const axiosPublic = useAxiosPublic();
-
   const {
     data: pageCount,
     isLoading,
@@ -52,14 +54,16 @@ const Controller = ({
   return (
     <div className="container mx-auto px-3 my-8">
       {/* Rent options */}
-      <div className="font-helvetica flex justify-between md:justify-end gap-6">
-        <span className="flex items-center gap-3 text-sm md:text-base">
-          Price Including Bills <img src={radioBtn} alt="" width={16} />
-        </span>
-        <span className="flex items-center gap-3 text-sm md:text-base">
-          Show Let Agreed <img src={radioBtn} alt="" width={16} />
-        </span>
-      </div>
+      {properties.length > 0 && properties[0].AGENT_REF.includes("r") && (
+        <div className="font-helvetica flex justify-between md:justify-end gap-6">
+          <span className="flex items-center gap-3 text-sm md:text-base">
+            Price Including Bills <img src={radioBtn} alt="" width={16} />
+          </span>
+          <span className="flex items-center gap-3 text-sm md:text-base">
+            Show Let Agreed <img src={radioBtn} alt="" width={16} />
+          </span>
+        </div>
+      )}
 
       {/* Other Controller */}
       <div className="flex flex-col md:flex-row items-center gap-6 md:justify-between mt-3">

@@ -16,9 +16,11 @@ const DeskSpecification = ({
         <h1 className=" text-xl md:text-2xl">
           £{property?.PRICE} <span className="text-sm">PCM</span>
         </h1>
-        <h1 className=" text-xl md:text-2xl">
-          £{property?.LET_BOND} <span className="text-sm">DEPOSIT</span>
-        </h1>
+        {property?.AGENT_REF.includes("r") && (
+          <h1 className=" text-xl md:text-2xl">
+            £{property?.LET_BOND} <span className="text-sm">DEPOSIT</span>
+          </h1>
+        )}
       </div>
 
       {/* -------Left Section------ */}
@@ -28,10 +30,14 @@ const DeskSpecification = ({
           <h1 className=" text-xl md:text-2xl">
             £{property?.PRICE} <span className="text-sm">PCM</span>
           </h1>
-          <div className="divider divider-horizontal before:bg-primary after:bg-primary"></div>
-          <h1 className=" text-xl md:text-2xl">
-            £{property?.LET_BOND} <span className="text-sm">DEPOSIT</span>
-          </h1>
+          {property?.AGENT_REF.includes("r") && (
+            <div className="divider divider-horizontal before:bg-primary after:bg-primary"></div>
+          )}
+          {property?.AGENT_REF.includes("r") && (
+            <h1 className=" text-xl md:text-2xl">
+              £{property?.LET_BOND} <span className="text-sm">DEPOSIT</span>
+            </h1>
+          )}
         </div>
         {/* -----Bedrooms count------- */}
         <p className="font-helvetica flex items-center gap-3 md:gap-4">
