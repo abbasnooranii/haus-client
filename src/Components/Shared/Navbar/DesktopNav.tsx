@@ -7,18 +7,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
+import { ResourcesLinkType } from "../../../types/ResourcesLinkType";
 
-type ResourcesChildType = {
-  title: string;
-  link?: string;
-};
-type ResourcesLinkType = {
-  title: string;
-  link?: string;
-  child: ResourcesChildType[];
-};
-
-const DesktopNav = () => {
+const DesktopNav = ({
+  resourcesArr,
+}: {
+  resourcesArr: ResourcesLinkType[];
+}) => {
   const [showResources, setShowResources] = useState<boolean>(false);
   const links = (
     <>
@@ -53,138 +48,7 @@ const DesktopNav = () => {
       </li>
     </>
   );
-  const resourcesArr: ResourcesLinkType[] = [
-    // Tanants
-    {
-      title: "Tenants",
-      link: "/tenants",
-      child: [
-        {
-          title: "A Tenant’s Guide to Renting",
-          link: "/tenants-guide-to-renting",
-        },
-        {
-          title: "Guarantors",
-          link: "/tenants",
-        },
-      ],
-    },
-    // BTL Investors
-    {
-      title: "BTL Investors",
-      link: "/btl-investors",
-      child: [
-        {
-          title: "Buying and Selling Investment Properties",
-          link: "/btl-investors",
-        },
-        {
-          title: "Property Sourcing",
-          link: "/btl-investors",
-        },
-      ],
-    },
-    // Buyers
-    {
-      title: "Buyers",
-      link: "/buyers",
-      child: [
-        {
-          title: "Buyers Guide",
-          link: "/buyers",
-        },
-        {
-          title: "Conveyancing",
-          link: "/buyers",
-        },
-        {
-          title: "Mortgages & Protections",
-          link: "/buyers",
-        },
-      ],
-    },
-    // Sellers
-    {
-      title: "Sellers",
-      link: "/sellers",
-      child: [
-        {
-          title: "Conveyancing",
-          link: "/sellers",
-        },
-        {
-          title: "Mortgages & Protections",
-          link: "/sellers",
-        },
-        {
-          title: "Legal",
-          link: "/sellers",
-        },
-        {
-          title: "Sellers Guide",
-          link: "/sellers",
-        },
-        {
-          title: "Tips for Selling",
-        },
-        {
-          title: "What Type of Seller Are You?",
-          link: "/sellers",
-        },
-        {
-          title: "Why Haus?",
-          link: "/sellers",
-        },
-      ],
-    },
-    // Landlords
-    {
-      title: "Landlords",
-      link: "/landlords",
-      child: [
-        {
-          title: "Lettings Property Management",
-          link: "/landlords",
-        },
-        {
-          title: "Residential Lettings",
-          link: "/landlords",
-        },
-        {
-          title: "Safety Regulations and Responsibilities ",
-          link: "/landlords",
-        },
-        {
-          title: "Student Lettings",
-          link: "/landlords",
-        },
-        {
-          title: "Why Use an Agent?",
-          link: "/landlords",
-        },
-      ],
-    },
-    // Careers
-    {
-      title: "Careers",
-      child: [
-        {
-          title: "Join The Haus Family",
-        },
-      ],
-    },
-    // Refer a Friend
-    {
-      title: "Refer a Friend",
-      link: "/refer-a-friend",
-      child: [
-        {
-          title: "Claim Reward",
-          link: "/refer-a-friend",
-        },
-      ],
-    },
-  ];
+
   return (
     <div className="bg-base-100 hidden lg:flex">
       <div className="navbar pt-3 pb-6 ">
