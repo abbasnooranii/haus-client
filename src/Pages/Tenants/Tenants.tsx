@@ -17,6 +17,7 @@ const Tenants = () => {
         desc="When you’re looking to rent a home, it can often feel like the pressure is on to make a quick decision or you’ll lose out. Don’t let these feelings get the best of you! It can take some careful thought and consideration to find the right place for you, so it’s worth being prepared."
         img={HouseImg}
         flexStyle="lg:flex-row"
+        url="/tenants-guide-to-renting"
       />
       <ImgDescSec
         title="GUARANTORS"

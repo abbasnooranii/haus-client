@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
+
 const ImgDescSec = ({
   title,
   img,
   desc,
   flexStyle,
+  url,
 }: {
   title: string;
   img: string;
   desc: string;
   flexStyle: string;
+  url?: string;
 }) => {
   return (
     <div
@@ -26,7 +30,9 @@ const ImgDescSec = ({
           {title}
         </h1>
         <p className="mb-6 md:my-6 text-center md:text-left">{desc}</p>
-        <button className="btn btn-outline btn-primary">Learn More</button>
+        <Link to={url || "/"} className="btn btn-outline btn-primary">
+          Learn More
+        </Link>
       </div>
     </div>
   );

@@ -248,7 +248,10 @@ const DesktopNav = () => {
         <div className="grid grid-cols-7 mt-12">
           {resourcesArr.map((res, i) => (
             <div key={i}>
-              <Link to={res.link ? res.link : "/"}>
+              <Link
+                to={res.link ? res.link : "/"}
+                onClick={() => setShowResources(false)}
+              >
                 <h3 className="text-xl text-center font-roboto font-semibold mb-3">
                   {res.title}
                 </h3>
@@ -257,6 +260,7 @@ const DesktopNav = () => {
                 {res.child.map((nested, i) => (
                   <li className="text-center" key={i + 100}>
                     <Link
+                      onClick={() => setShowResources(false)}
                       to={nested?.link ? nested.link : "/"}
                       className="text-sm hover:border-b hover:border-primary"
                     >

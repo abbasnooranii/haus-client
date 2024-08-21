@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ReferImg from "../../../assets/Images/Home/Rafar-a-friend.png";
 
 const Refer = () => {
@@ -13,7 +14,9 @@ const Refer = () => {
           about them and if they complete with us, we'll give each of you a £25
           voucher.
         </p>
-        <button className="btn btn-outline btn-primary">Learn More</button>
+        <Link to={"/refer-a-friend"} className="btn btn-outline btn-primary">
+          Learn More
+        </Link>
       </div>
       <div className="rounded overflow-hidden">
         <h2 className="text-xl font-helvetica md:hidden text-center mb-3">
