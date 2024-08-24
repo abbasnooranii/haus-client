@@ -1,8 +1,5 @@
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
 import radioBtn from "../../../assets/Logos/Radio_Button_01.png";
-
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import { ChangeEvent, SetStateAction } from "react";
 import { PropertyType } from "../../../types/PropertyType";
 
@@ -13,6 +10,9 @@ const Controller = ({
   setSelectedPage,
   sort,
   handleSortChange,
+  pageCount,
+  isLoading,
+  isError,
 }: {
   properties: PropertyType[];
   selectedPage: number;
@@ -20,20 +20,10 @@ const Controller = ({
   sort: string;
   handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   propertiesCount: number | undefined;
+  pageCount: { count: number } | undefined;
+  isLoading: boolean;
+  isError: boolean;
 }) => {
-  const axiosPublic = useAxiosPublic();
-  const {
-    data: pageCount,
-    isLoading,
-    isError,
-  } = useQuery<{ count: number }>({
-    queryKey: ["property-count"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/property/page-count");
-      return res.data;
-    },
-  });
-
   // const { search } = searchContext;
   if (isLoading) {
     return (

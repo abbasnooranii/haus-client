@@ -1,11 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import useSearchContext from "../../../Hooks/useSearchContext";
 
-const MobileFilter = ({
-  refetchProperties,
-}: {
-  refetchProperties?: () => void;
-}) => {
+const MobileFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const searchContext = useSearchContext();
   const location = useLocation();
   if (!searchContext) {
@@ -162,7 +158,7 @@ const MobileFilter = ({
             />
             {location.pathname === "/hauses" ? (
               <button
-                onClick={refetchProperties}
+                onClick={handleSearch}
                 className="btn btn-filled btn-primary font-roboto w-full"
               >
                 Search
@@ -170,7 +166,7 @@ const MobileFilter = ({
             ) : (
               <Link
                 to={"/hauses"}
-                onClick={refetchProperties}
+                onClick={handleSearch}
                 className="btn btn-filled btn-primary font-roboto w-full"
               >
                 Search

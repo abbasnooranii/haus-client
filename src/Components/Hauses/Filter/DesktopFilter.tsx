@@ -1,17 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import useSearchContext from "../../../Hooks/useSearchContext";
 
-const DesktopFilter = ({
-  refetchProperties,
-}: {
-  refetchProperties?: () => void;
-}) => {
+const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const searchContext = useSearchContext();
   const location = useLocation();
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
   const { search, setSearch } = searchContext;
+
   return (
     <div className=" container mx-auto px-3 gap-2 hidden md:flex">
       {/* Type */}
@@ -109,7 +106,7 @@ const DesktopFilter = ({
 
       {location.pathname === "/hauses" ? (
         <button
-          onClick={refetchProperties}
+          onClick={handleSearch}
           className="btn btn-filled btn-primary font-roboto"
         >
           Search
@@ -117,7 +114,7 @@ const DesktopFilter = ({
       ) : (
         <Link
           to={"/hauses"}
-          onClick={refetchProperties}
+          onClick={handleSearch}
           className="btn btn-filled btn-primary font-roboto"
         >
           Search
