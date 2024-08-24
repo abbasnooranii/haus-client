@@ -22,31 +22,37 @@ const FirstRow = () => {
             <select
               className="p-3 border border-gray-300 w-full"
               defaultValue=""
+              name="which_area"
             >
               <option value="" disabled className="">
                 Which Area?
               </option>
-              <option value="london">London</option>
+              <option value="London">London</option>
+              <option value="Tokyo">Tokyo</option>
             </select>
             {/* ----Landlord Or Seller?---- */}
             <select
               className="p-3 border border-gray-300 w-full"
               defaultValue=""
+              name="landlord_or_seller"
             >
               <option value="" disabled className="">
                 Landlord Or Seller?
               </option>
-              <option value="london">London</option>
+              <option value="Landloard">Landloard</option>
+              <option value="Seller">Seller</option>
             </select>
             {/* ----Student Property Or Non Student Property?---- */}
             <select
               className="p-3 border border-gray-300 w-full"
               defaultValue=""
+              name="student_or_not"
             >
               <option value="" disabled className="">
                 Student Property Or Non Student Property?
               </option>
-              <option value="london">London</option>
+              <option value="Student Property">Student Property</option>
+              <option value="Non Student Property">Non Student Property</option>
             </select>
           </div>
         </div>
