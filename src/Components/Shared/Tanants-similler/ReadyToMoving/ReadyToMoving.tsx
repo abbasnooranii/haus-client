@@ -11,7 +11,7 @@ interface RaferFormType {
   name: string;
   email: string;
   phone_number: string;
-  property_id: string;
+  area: string;
   message: string;
 }
 
@@ -30,9 +30,16 @@ const ReadyToMoving = () => {
     const name = form.user_name.value;
     const email = form.email.value;
     const phone_number = form.phone_number.value;
-    const property_id = form.property_id.value;
+    const area = form.area.value;
     const message = form.message.value;
-    const user = { name, email, phone_number, property_id, message };
+    const user = { name, email, phone_number, area, message };
+    if (area === "") {
+      return Swal.fire({
+        title: "Please choose an Area",
+        icon: "error",
+        timer: 1500,
+      });
+    }
     mutate(user, {
       onSuccess: () => {
         Swal.fire({
@@ -113,6 +120,18 @@ const ReadyToMoving = () => {
         {/* ------Right----- */}
         <div className="md:w-1/2">
           <form className="space-y-2" onSubmit={handleFormSubmit}>
+            {/* Area */}
+            <select
+              className="p-3 border border-gray-300 w-full"
+              defaultValue=""
+              name="area"
+            >
+              <option value="" disabled className="">
+                Area
+              </option>
+              <option value="London">London</option>
+              <option value="Tokyo">Tokyo</option>
+            </select>
             {/* ----Name---- */}
             <input
               type="text"
@@ -134,14 +153,6 @@ const ReadyToMoving = () => {
               type="text"
               placeholder="Phone Number"
               name="phone_number"
-              required
-              className="p-3 border border-gray-300 w-full"
-            />
-            {/* ----Property ID---- */}
-            <input
-              type="text"
-              placeholder="Property ID - 151_1748r"
-              name="property_id"
               required
               className="p-3 border border-gray-300 w-full"
             />
