@@ -10,7 +10,7 @@ const ContactUs = () => {
   return (
     <div>
       <Helmet>
-        <title>Contact US</title>
+        <title>Contact us</title>
         {/* <meta name="description" content="Helmet application" /> */}
       </Helmet>
       <DesktopFilter />

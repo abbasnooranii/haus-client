@@ -3,10 +3,15 @@ import ComonTitleDesc from "../../Components/AboutUs/ComonTitleDesc/ComonTitleDe
 import Reviews from "../../Components/Home/Reviews/Reviews";
 import ResponsiveBanner from "../../Components/Shared/Tanants-similler/Banner/ResponsiveBanner";
 import VirtualImg from "../../assets/Images/Virtual_Tours.png";
+import { Helmet } from "react-helmet";
 
 const AboutUs = () => {
   return (
     <div>
+      <Helmet>
+        <title>About</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <ResponsiveBanner title="ABOUT US" />
 
       <div className="container mx-auto my-12 space-y-3">

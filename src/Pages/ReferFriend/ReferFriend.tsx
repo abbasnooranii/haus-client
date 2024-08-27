@@ -5,6 +5,7 @@ import ResponsiveBanner from "../../Components/Shared/Tanants-similler/Banner/Re
 import Swal from "sweetalert2";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 interface RaferFormType {
   which_area: string;
@@ -91,6 +92,10 @@ const ReferFriend = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>REFER A FRIEND</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <ResponsiveBanner title="REFER A FRIEND" />
       <form onSubmit={handleSubmit}>
         <FirstRow />

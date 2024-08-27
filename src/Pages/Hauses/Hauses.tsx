@@ -6,6 +6,7 @@ import useSearchContext from "../../Hooks/useSearchContext";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { PropertyType } from "../../types/PropertyType";
 import { ChangeEvent, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const Hauses = () => {
   const searchContext = useSearchContext();
@@ -103,6 +104,10 @@ const Hauses = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Hauses</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <Filter refetchProperties={refetch} refetchPageCount={pageCountRefetch} />
       {isLoading ? (
         <div className="w-full min-h-screen flex justify-center">

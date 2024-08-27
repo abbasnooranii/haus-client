@@ -6,9 +6,14 @@ import HouseImg from "../../assets/Images/Tanants-similler/House-door.png";
 import HandImg from "../../assets/Images/Tanants-similler/Hand.png";
 import ReadyToMoving from "../../Components/Shared/Tanants-similler/ReadyToMoving/ReadyToMoving";
 import BottomDesc from "../../Components/Shared/Tanants-similler/BottomDesc/BottomDesc";
+import { Helmet } from "react-helmet";
 const Buyers = () => {
   return (
     <div>
+      <Helmet>
+        <title>BUYERS</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <Filter />
       <Banner title="BUYERS" />
       <ImgDescSec

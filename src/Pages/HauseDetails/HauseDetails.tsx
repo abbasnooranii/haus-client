@@ -8,6 +8,7 @@ import Filter from "../../Components/Hauses/Filter/Filter";
 import { useQuery } from "@tanstack/react-query";
 import { PropertyType } from "../../types/PropertyType";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const HauseDetails = () => {
   const { id } = useParams();
@@ -41,6 +42,10 @@ const HauseDetails = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Haus Details-{property?.AGENT_REF}</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <Filter />
       <MobileSpecification property={property} />
       <Images property={property} />

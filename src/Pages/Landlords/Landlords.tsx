@@ -5,10 +5,15 @@ import Filter from "../../Components/Hauses/Filter/Filter";
 import HouseImg from "../../assets/Images/Tanants-similler/House-door.png";
 import HandImg from "../../assets/Images/Tanants-similler/Hand.png";
 import GetPropertyValued from "../../Components/Shared/Tanants-similler/GetPropertyValued/GetPropertyValued";
+import { Helmet } from "react-helmet";
 
 const Landlords = () => {
   return (
     <div>
+      <Helmet>
+        <title>LANDLORDS</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <Filter />
       <Banner title="LANDLORDS" />
       <GetPropertyValued

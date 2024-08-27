@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import VirtualBanner from "../../../Components/VirtualTours/VirtualBanner/VirtualBanner";
 import VirtualVideoImg from "../../../assets/Images/VirtualTours/Virtual_tours_video.png";
 import VirtualBlogImg from "../../../assets/Images/VirtualTours/blog_img.png";
@@ -5,6 +6,10 @@ import VirtualBlogImg from "../../../assets/Images/VirtualTours/blog_img.png";
 const VirtualTours = () => {
   return (
     <div>
+      <Helmet>
+        <title>VIRTUAL TOURS</title>
+        {/* <meta name="description" content="Helmet application" /> */}
+      </Helmet>
       <VirtualBanner />
       {/* ENHANCHED MARKETING & VIRTUAL TOURS */}
       <div className="container mx-auto px-3 flex flex-col md:flex-row gap-6 items-center my-24">
