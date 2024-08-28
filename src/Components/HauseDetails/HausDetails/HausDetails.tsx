@@ -11,8 +11,8 @@ const HausDetails = ({ property }: { property: PropertyType | undefined }) => {
     <div className="container mx-auto px-5 my-12">
       <Menu selectedSpec={selectedSpec} setSelectedSpec={setSelectedSpec} />
       {selectedSpec === "description" && <Description property={property} />}
-      {selectedSpec === "map-street" && <MapStreet />}
-      {selectedSpec === "epc" && <Epc />}
+      {selectedSpec === "map-street" && <MapStreet property={property} />}
+      {selectedSpec === "epc" && <Epc property={property} />}
     </div>
   );
 };
