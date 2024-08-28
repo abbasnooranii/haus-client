@@ -1,80 +1,37 @@
-import Progress from "react-progressbar";
+import EpcDemo1 from "../../../../assets/Images/Hauses/epc-demo-01.jpeg";
+import EpcDemo2 from "../../../../assets/Images/Hauses/epc-demo-02.jpeg";
 
-const Epc = () => {
+import { PropertyType } from "../../../../types/PropertyType";
+const Epc = ({ property }: { property: PropertyType | undefined }) => {
   return (
-    <div className="border border-gray-200 p-6 md:p-10 my-12">
-      <div className="max-w-[660px]  space-y-4">
-        <h1 className=" text-xl md:text-2xl bg-[#28AE7B] text-white p-2 rounded">
-          Energy Efficiency Rating
-        </h1>
-        <p className="text-gray-400 mt-4 text-sm">
-          Very Energy Efficient - low running cost
-        </p>
-        <div>
-          {/* ---------A--------- */}
-          <div className="text-gray-400 text-sm">
-            <p className="flex justify-between">
-              <span>(92 Plus)</span>
-              <span> A</span>
-            </p>
-            <div className="bg-gray-200 rounded overflow-hidden">
-              <Progress
-                completed={75}
-                color="#00C851"
-                animation={100}
-                height={14}
-              />
-            </div>
-          </div>
-          {/* ---------B--------- */}
-          <div className="text-gray-400 text-sm">
-            <p className="flex justify-between">
-              <span>(81-91)</span>
-              <span> B</span>
-            </p>
-            <div className="bg-gray-200 rounded overflow-hidden">
-              <Progress
-                completed={75}
-                color="#33B5E5"
-                animation={100}
-                height={14}
-              />
-            </div>
-          </div>
-          {/* ---------C--------- */}
-          <div className="text-gray-400 text-sm">
-            <p className="flex justify-between">
-              <span>(69-80)</span>
-              <span> C </span>
-            </p>
-            <div className="bg-gray-200 rounded overflow-hidden">
-              <Progress
-                completed={75}
-                color="#FFBB33"
-                animation={100}
-                height={14}
-              />
-            </div>
-          </div>
-          {/* ---------D--------- */}
-          <div className="text-gray-400 text-sm">
-            <p className="flex justify-between">
-              <span>(55-68)</span>
-              <span> D </span>
-            </p>
-            <div className="bg-gray-200 rounded overflow-hidden">
-              <Progress
-                completed={75}
-                color="#FF3547"
-                animation={100}
-                height={14}
-              />
-            </div>
-          </div>
-          <p className="text-gray-400 mt-4 text-sm">
-            Not Energy Efficient - High running cost
-          </p>
-        </div>
+    <div className="border border-gray-200 p-6 md:p-10 my-12 flex flex-col md:flex-row gap-6">
+      <div className="max-w-[660px]">
+        <img
+          src={`${import.meta.env.VITE_API_URL}/api/images/${
+            property?.MEDIA_IMAGE_60
+          }`}
+          alt={property?.MEDIA_IMAGE_TEXT_60}
+          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+            const target = e.currentTarget;
+            target.onerror = null;
+            target.src = EpcDemo1;
+          }}
+          className=""
+        />
+      </div>
+      <div className="max-w-[660px]">
+        <img
+          src={`${import.meta.env.VITE_API_URL}/api/images/${
+            property?.MEDIA_IMAGE_61
+          }`}
+          alt={property?.MEDIA_IMAGE_TEXT_61}
+          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+            const target = e.currentTarget;
+            target.onerror = null;
+            target.src = EpcDemo2;
+          }}
+          className=""
+        />
       </div>
     </div>
   );
