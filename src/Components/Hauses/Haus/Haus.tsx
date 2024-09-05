@@ -4,8 +4,14 @@ import LocationRooms from "./Location&Rooms";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { PropertyType } from "../../../types/PropertyType";
+import useSearchContext from "../../../Hooks/useSearchContext";
 
 const Haus = ({ property }: { property: PropertyType }) => {
+  const searchContext = useSearchContext();
+  if (!searchContext) {
+    return <h1> Something went wrong. </h1>;
+  }
+  const { search } = searchContext;
   return (
     <Link to={`/hauses/${property._id}`} className="block">
       <div className="border border-gray-400 rounded p-4 flex flex-col md:flex-row md:gap-8">
@@ -24,11 +30,14 @@ const Haus = ({ property }: { property: PropertyType }) => {
           {/* -----Price------ */}
           <div className="flex justify-between px-2">
             <h1 className=" text-xl md:text-2xl">
-              £{property.PRICE} <span className="text-sm">PCM</span>
+              £{property.PRICE}{" "}
+              <span className="text-sm">
+                {search.type === "to_let" ? "PCM" : ""}
+              </span>
             </h1>
             {property.AGENT_REF.includes("r") && (
               <h1 className=" text-xl md:text-2xl">
-                £{property.LET_BOND} <span className="text-sm">DEPOSITE</span>
+                £{property.LET_BOND} <span className="text-sm">DEPOSIT</span>
               </h1>
             )}
           </div>
