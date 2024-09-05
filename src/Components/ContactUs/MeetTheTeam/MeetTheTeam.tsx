@@ -60,6 +60,7 @@ Office based, I am here to help with tenant applications to key handovers and la
 When I’m not at work you’ll find me watching whatever’s new at the cinema or enjoying a good pub quiz.`,
   },
 ];
+
 const MeetTheTeam = () => {
   const [member, setMember] = useState(teamMembers[0]);
 

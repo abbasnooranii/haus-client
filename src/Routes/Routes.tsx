@@ -10,6 +10,7 @@ import Buyers from "../Pages/Buyers/Buyers";
 import Sellers from "../Pages/Sellers/Sellers";
 import TenantsGuideToRanting from "../Pages/Articles/TenantsGuideToRanting/TenantsGuideToRanting";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import HausSalesandLettingLeeds from "../Pages/ContactUs/HausSalesandLettingsLeeds/HausSalesandLettingsLeeds";
 import ReferFriend from "../Pages/ReferFriend/ReferFriend";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import VirtualTours from "../Pages/Articles/VirtualTours/VirtualTours";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/contact-haus-sales-and-lettings-leeds",
+        element: <HausSalesandLettingLeeds />,
       },
       {
         path: "/about-us",
