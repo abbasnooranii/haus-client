@@ -14,6 +14,7 @@ import HausSalesandLettingLeeds from "../Pages/ContactUs/HausSalesandLettingsLee
 import ReferFriend from "../Pages/ReferFriend/ReferFriend";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import VirtualTours from "../Pages/Articles/VirtualTours/VirtualTours";
+import HausStudentLeeds from "../Pages/ContactUs/HausStudentLeeds/HausStudentLeeds";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-haus-sales-and-lettings-leeds",
         element: <HausSalesandLettingLeeds />,
+      },
+      {
+        path: "/contact-haus-student-leeds",
+        element: <HausStudentLeeds />,
       },
       {
         path: "/about-us",

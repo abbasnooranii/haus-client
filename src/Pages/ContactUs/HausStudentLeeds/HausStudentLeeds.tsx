@@ -6,18 +6,15 @@ import LearnAboutHaus from "../../../Components/ContactUs/LearnAboutHaus/LearnAb
 import ServicesAvailable from "../../../Components/ContactUs/ServicesAvailable/ServicesAvailable";
 import MeetTheTeam from "../../../Components/ContactUs/MeetTheTeam/MeetTheTeam";
 
-const HausSalesandLettingLeeds = () => {
+const HausStudentLeeds = () => {
   return (
     <div>
       <Helmet>
-        <title>Haus Sales and Lettings Leeds</title>
+        <title>Haus Student Leeds</title>
         {/* <meta name="description" content="Helmet application" /> */}
       </Helmet>
       <DesktopFilter />
-      <ResponsiveBanner
-        title="HAUS SALES AND LETTINGS LEEDS"
-        width="max-w-[420px]"
-      />
+      <ResponsiveBanner title="HAUS STUDENT LEEDS" width="max-w-[420px]" />
       <ContactUsMap />
       <div className="home-banner min-h-[500px] my-12"></div>
       <LearnAboutHaus />
@@ -27,4 +24,4 @@ const HausSalesandLettingLeeds = () => {
   );
 };
 
-export default HausSalesandLettingLeeds;
+export default HausStudentLeeds;
