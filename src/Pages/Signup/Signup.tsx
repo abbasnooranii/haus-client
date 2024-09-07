@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { AxiosError } from "axios";
 
 type UserType = {
   title: string;
@@ -15,6 +16,7 @@ type UserType = {
 
 const Signup = () => {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: UserType) => {
@@ -48,10 +50,20 @@ const Signup = () => {
     };
     mutate(user, {
       onSuccess: (data) => {
-        console.log(data);
+        Swal.fire({
+          icon: "success",
+          title: data.data.message,
+        });
+        navigate("/signin");
       },
       onError: (err) => {
         console.log(err);
+        if (err instanceof AxiosError) {
+          Swal.fire({
+            icon: "error",
+            title: err.response?.data.message,
+          });
+        }
       },
     });
   };

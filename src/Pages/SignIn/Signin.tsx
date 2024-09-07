@@ -1,9 +1,56 @@
 import { FormEvent } from "react";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { AxiosError } from "axios";
+import useAuth from "../../Hooks/useAuth";
+
+type UserType = {
+  email: string;
+  password: string;
+};
 
 const Signin = () => {
+  const axiosPublic = useAxiosPublic();
+  const Auth = useAuth();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: UserType) => {
+      return axiosPublic.post("/auth/signin", data);
+    },
+  });
+
   const handleSignin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const user = {
+      email,
+      password,
+    };
+
+    mutate(user, {
+      onSuccess: (data) => {
+        Swal.fire({
+          icon: "success",
+          title: data.data.message,
+        });
+        Auth?.setUser(data.data.user);
+      },
+      onError: (err) => {
+        console.log(err);
+        if (err instanceof AxiosError) {
+          Swal.fire({
+            icon: "error",
+            title: err.response?.data.message,
+          });
+        }
+      },
+    });
   };
   return (
     <main>
@@ -39,13 +86,13 @@ const Signin = () => {
               </div>
               <button
                 className="btn btn-primary btn-filled w-full"
-                //   disabled={loading}
+                disabled={isPending}
               >
-                {/* {loading ? (
+                {isPending ? (
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-                ) : ( */}
-                Sign In
-                {/* )} */}
+                ) : (
+                  "Sign In"
+                )}
               </button>
               <p className="text-xs">
                 Don&apos;t have an account?

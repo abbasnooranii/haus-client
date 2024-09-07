@@ -82,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact-haus-sales-and-lettings-south-yorkshire",
-        element: <HausSalesandLettingsSouthYorkshire />,
+        element: <HausSalesandLettingsSouthYorkshire />,  
       },
       {
         path: "/about-us",
