@@ -75,6 +75,76 @@ const MobileNav = ({ resourcesArr }: { resourcesArr: ResourcesLinkType[] }) => {
               <FaEarthAmericas size={24} />
             </div>
           </li>
+          {/* About us */}
+          <li>
+            <div className="bg-[#EEEEEE] border-2 border-[#F6BB71] rounded-r-lg p-3 flex justify-between items-center">
+              <Link
+                onClick={() => setShowNav(false)}
+                to="/about-us"
+                className="text-sm"
+              >
+                {" "}
+                About{" "}
+              </Link>
+            </div>
+          </li>
+          {/* Contact us */}
+          <li className="overflow-hidden">
+            <div className="bg-[#EEEEEE] border-2 border-[#F6BB71] rounded-r-lg p-3 flex justify-between items-center">
+              <span onClick={() => setShowNav(false)} className="text-sm">
+                Contact Us
+              </span>
+              <button
+                onClick={() =>
+                  setSelectedMenu(
+                    selectedMenu === "contact-us" ? "" : "contact-us"
+                  )
+                }
+              >
+                <TbTriangleInvertedFilled
+                  className={`${
+                    selectedMenu === "contact-us" ? "rotate-180" : "rotate-0"
+                  } duration-500`}
+                />
+              </button>
+            </div>
+            {/*2nd Nested menu */}
+            <ul
+              className={`mt-1 ml-2 space-y-1 duration-500 ${
+                selectedMenu === "contact-us" ? "h-40" : "h-0"
+              }`}
+            >
+              <li>
+                <Link
+                  onClick={() => setShowNav(false)}
+                  to="/contact-haus-sales-and-lettings-leeds"
+                  className="bg-[#EEEEEE] border-2 border-[#F6BB71] rounded-r-lg p-3 flex justify-between items-center"
+                >
+                  <span className="text-sm">Haus Sales and Lettings Leeds</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => setShowNav(false)}
+                  to="/contact-haus-student-leeds"
+                  className="bg-[#EEEEEE] border-2 border-[#F6BB71] rounded-r-lg p-3 flex justify-between items-center"
+                >
+                  <span className="text-sm">Haus Student Leeds</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => setShowNav(false)}
+                  to="/contact-haus-sales-and-lettings-south-yorkshire"
+                  className="bg-[#EEEEEE] border-2 border-[#F6BB71] rounded-r-lg p-3 flex justify-between items-center"
+                >
+                  <span className="text-sm">
+                    Haus Sales and Lettings South Yorkshire
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </li>
 
           {resourcesArr.map((resourc, i) => (
             <li key={i} className="overflow-hidden">
