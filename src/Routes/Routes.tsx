@@ -16,12 +16,22 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import VirtualTours from "../Pages/Articles/VirtualTours/VirtualTours";
 import HausStudentLeeds from "../Pages/ContactUs/HausStudentLeeds/HausStudentLeeds";
 import HausSalesandLettingsSouthYorkshire from "../Pages/ContactUs/HausSalesandLettingsSouthYorkshire/HausSalesandLettingsSouthYorkshire";
+import Signin from "../Pages/SignIn/Signin";
+import Signup from "../Pages/Signup/Signup";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        path: "/signin",
+        element: <Signin />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
       {
         path: "/",
         element: <Home />,

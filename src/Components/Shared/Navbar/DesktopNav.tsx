@@ -30,36 +30,8 @@ const DesktopNav = ({
           Haus Students <LuCopySlash />
         </a>
       </li>
+      {/* ---------Contact us-------- */}
       <li>
-        {/* <select defaultValue="" className=" w-24">
-          <option value="">
-            Contact Us <TbTriangleInvertedFilled />
-          </option>
-          <option value="/contact-haus-sales-and-lettings-leeds">
-            <Link
-              to="/contact-haus-sales-and-lettings-leeds"
-              className=" flex items-center border-b border-white hover:border-primary gap-2"
-            >
-              Haus Sales and Lettings Leeds
-            </Link>
-          </option>
-          <option value="/contact-haus-student-leeds">
-            <Link
-              to="/contact-haus-student-leeds"
-              className=" flex items-center border-b border-white hover:border-primary gap-2"
-            >
-              Haus Student Leeds
-            </Link>
-          </option>
-          <option value="/contact-haus-sales-and-lettings-south-yorkshire">
-            <Link
-              to="/contact-haus-sales-and-lettings-south-yorkshire"
-              className=" flex items-center border-b border-white hover:border-primary gap-2"
-            >
-              Haus Sales and Lettings South Yorkshire
-            </Link>
-          </option>
-        </select> */}
         <div className="relative group ">
           <div className="flex items-center border-b border-white hover:border-primary gap-2">
             Contact Us <TbTriangleInvertedFilled />
@@ -130,7 +102,34 @@ const DesktopNav = ({
               </ul>
             </li>
             <li>
-              <button className="btn btn-outline btn-primary">Sign In</button>
+              <div className="relative group p-0">
+                {/* <div className="flex items-center border-b border-white hover:border-primary gap-2 text-primary font-semibold"> */}
+                <button className="btn btn-outline btn-primary text-sm font-medium py-0">
+                  Sign In
+                  <TbTriangleInvertedFilled />
+                </button>
+                {/* </div> */}
+                <div className="absolute -left-6 top-full p-4 overflow-hidden origin-top scale-y-0 group-hover:scale-y-100 transition-all duration-300 bg-white rounded-lg space-y-4 w-auto *:text-nowrap z-10 border border-primary">
+                  <Link
+                    to="/signin"
+                    className=" flex items-center border-b border-white hover:border-primary gap-2"
+                  >
+                    Just Looking
+                  </Link>
+                  <Link
+                    to="/"
+                    className=" flex items-center border-b border-white hover:border-primary gap-2"
+                  >
+                    Tenant Login
+                  </Link>
+                  <Link
+                    to="/contact-haus-sales-and-lettings-south-yorkshire"
+                    className=" flex items-center border-b border-white hover:border-primary gap-2"
+                  >
+                    Landloard Login
+                  </Link>
+                </div>
+              </div>
             </li>
           </ul>
           <ul className="custome-nav px-1 text-sm font-normal font-helvetica flex gap-6 *:cursor-pointer">
