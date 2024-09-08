@@ -17,7 +17,6 @@ const DesktopNav = ({
 }) => {
   const [showResources, setShowResources] = useState<boolean>(false);
   const Auth = useAuth();
-  console.log(Auth);
 
   const links = (
     <>
@@ -130,11 +129,11 @@ const DesktopNav = ({
                     className="dropdown-content z-[1] menu p-0 -left-[100px] top-full rounded-md overflow-hidden w-40 bg-gray-300 *:font-medium"
                   >
                     <p className="px-4 py-2 text-lg text-net-red font-semibold uppercase">
-                      {Auth?.user?.name}
+                      {Auth?.user?.displayName}
                     </p>
 
                     <li className="text-net-red hover:bg-net-red hover:text-white">
-                      <button>Logout</button>
+                      <button onClick={() => Auth?.logout()}>Logout</button>
                     </li>
                   </ul>
                 </div>

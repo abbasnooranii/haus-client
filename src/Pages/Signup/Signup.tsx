@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { AxiosError } from "axios";
+import useAuth from "../../Hooks/useAuth";
 
 type UserType = {
   title: string;
   name: string;
   email: string;
-  password: string;
   current_setuation: string;
   alerts: string;
 };
@@ -17,13 +17,14 @@ type UserType = {
 const Signup = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const Auth = useAuth();
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: UserType) => {
       return axiosPublic.post("/auth/signup", data);
     },
   });
-
+  console.log(Auth?.loading, isPending);
   const handleSignin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -40,32 +41,62 @@ const Signup = () => {
         title: "Password and Confirm Password didn't match",
       });
     }
-    const user = {
-      title,
-      name,
-      email,
-      password,
-      current_setuation,
-      alerts,
-    };
-    mutate(user, {
-      onSuccess: (data) => {
-        Swal.fire({
-          icon: "success",
-          title: data.data.message,
-        });
-        navigate("/signin");
-      },
-      onError: (err) => {
-        console.log(err);
-        if (err instanceof AxiosError) {
+    try {
+      await Auth?.createAccount(email, password);
+      await Auth?.updateAccount(name);
+
+      const user = {
+        title,
+        name,
+        email,
+        current_setuation,
+        alerts,
+      };
+      mutate(user, {
+        onSuccess: (data) => {
           Swal.fire({
-            icon: "error",
-            title: err.response?.data.message,
+            icon: "success",
+            title: data.data.message,
           });
-        }
-      },
-    });
+          navigate("/signin");
+        },
+        onError: (err) => {
+          console.log(err);
+          if (err instanceof AxiosError) {
+            Swal.fire({
+              icon: "error",
+              title: err.response?.data.message,
+            });
+          }
+        },
+      });
+      // const { data: userData } = await axiosPublic.post("/auth/signup", user);
+      // console.log(userData);
+      // if (userData.insertedId) {
+      //   Swal.fire({
+      //     // position: "top-end",
+      //     icon: "success",
+      //     title: "User created successfully.",
+      //     showConfirmButton: false,
+      //     timer: 1500,
+      //   });
+      // }
+    } catch (error) {
+      console.log(error);
+      if (error instanceof Error) {
+        Swal.fire({
+          title: error.message,
+          icon: "error",
+        });
+      } else {
+        Swal.fire({
+          title: "An unknown error occurred",
+          icon: "error",
+        });
+      }
+    } finally {
+      Auth?.setLoading(false);
+    }
   };
   return (
     <main>
@@ -167,13 +198,13 @@ const Signup = () => {
               <button
                 className="btn btn-primary btn-filled w-full"
                 type="submit"
-                disabled={isPending}
+                disabled={isPending || Auth?.loading}
               >
-                {isPending ? (
+                {isPending || Auth?.loading ? (
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
                 ) : (
                   "Sign Up"
-                )}{" "}
+                )}
               </button>
               <p className="text-xs">
                 Already have an account?

@@ -1,25 +1,11 @@
 import { FormEvent } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AxiosError } from "axios";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
-type UserType = {
-  email: string;
-  password: string;
-};
 
 const Signin = () => {
-  const axiosSecure = useAxiosSecure();
   const Auth = useAuth();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: (data: UserType) => {
-      return axiosSecure.post("/auth/signin", data);
-    },
-  });
+  const navigate = useNavigate();
 
   const handleSignin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,30 +14,27 @@ const Signin = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const user = {
-      email,
-      password,
-    };
-
-    mutate(user, {
-      onSuccess: (data) => {
+    Auth?.login(email, password)
+      .then((res) => {
+        const loggedInUser = res.user;
         Swal.fire({
+          // position: "top-end",
           icon: "success",
-          title: data.data.message,
+          title: "Login successfull!",
+          showConfirmButton: false,
+          timer: 1500,
         });
-        Auth?.setUser(data.data.user);
-      },
-      onError: (err) => {
+        navigate("/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: err.message,
+          icon: "error",
+        });
         console.log(err);
-        if (err instanceof AxiosError) {
-          Swal.fire({
-            icon: "error",
-            title: err.response?.data.message,
-          });
-        }
-      },
-    });
+      });
   };
+
   return (
     <main>
       <div className="container mx-auto">
@@ -86,9 +69,9 @@ const Signin = () => {
               </div>
               <button
                 className="btn btn-primary btn-filled w-full"
-                disabled={isPending}
+                disabled={Auth?.loading}
               >
-                {isPending ? (
+                {Auth?.loading ? (
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
                 ) : (
                   "Sign In"
