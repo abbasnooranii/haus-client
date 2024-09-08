@@ -1,14 +1,85 @@
-import { FaHeart, FaShare, FaShower } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaShare, FaShower } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdBed } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { PropertyType } from "../../../types/PropertyType";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import auth from "../../../firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
 
 const DeskSpecification = ({
   property,
 }: {
   property: PropertyType | undefined;
 }) => {
+  const Auth = useAuth();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+
+  const handleSaveProperty = async () => {
+    if (!Auth?.user || !property) {
+      return navigate("/signin");
+    }
+    const res = await axiosSecure.post("/user/save-property", {
+      AGENT_REF: property.AGENT_REF,
+    });
+    if (res.status === 200) {
+      await Auth.handleAuthState(auth.currentUser);
+      Swal.fire({
+        icon: "success",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else if (res.status === 202) {
+      Swal.fire({
+        icon: "warning",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Unable to save property",
+      });
+    }
+  };
+  const handleUnsaveProperty = async () => {
+    if (!Auth?.user || !property) {
+      return navigate("/signin");
+    }
+    const res = await axiosSecure.post("/user/unsave-property", {
+      AGENT_REF: property.AGENT_REF,
+    });
+    if (res.status === 200) {
+      await Auth.handleAuthState(auth.currentUser);
+      Swal.fire({
+        icon: "success",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else if (res.status === 202) {
+      Swal.fire({
+        icon: "warning",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Unable to save property",
+      });
+    }
+  };
+
+  if (!property) {
+    return;
+  }
   return (
     <div className="container mx-auto px-5 md:flex md:justify-between items-center mb-6">
       {/* ------Mobile Price------ */}
@@ -70,9 +141,22 @@ const DeskSpecification = ({
         </p>
         {/* --------Actions-------- */}
         <div className="flex justify-end gap-4 text-sm mt-1">
-          <button className="flex items-center gap-1 font-helvetica">
-            <FaHeart className="text-primary" /> Save
-          </button>
+          {Auth?.user?.saved_properties &&
+          Auth?.user?.saved_properties.includes(property.AGENT_REF) ? (
+            <button
+              className="flex items-center gap-1 font-helvetica"
+              onClick={handleUnsaveProperty}
+            >
+              <FaHeart className="text-primary" /> Saved
+            </button>
+          ) : (
+            <button
+              className="flex items-center gap-1 font-helvetica"
+              onClick={handleSaveProperty}
+            >
+              <FaRegHeart className="text-primary" /> Save
+            </button>
+          )}
           <button className="flex items-center gap-1 font-helvetica">
             <FaShare className="text-blue-600" /> Share
           </button>

@@ -13,6 +13,8 @@ import { Helmet } from "react-helmet";
 const HauseDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
+
+  // Getting Property Details
   const {
     data: property,
     // refetch,

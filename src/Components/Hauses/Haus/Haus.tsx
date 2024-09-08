@@ -85,6 +85,7 @@ const Haus = ({
       });
     }
   };
+
   return (
     <div>
       <div className="border border-gray-400 rounded p-4 flex flex-col md:flex-row md:gap-8">
