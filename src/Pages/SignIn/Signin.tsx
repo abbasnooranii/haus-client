@@ -15,8 +15,8 @@ const Signin = () => {
     const password = form.password.value;
 
     Auth?.login(email, password)
-      .then((res) => {
-        const loggedInUser = res.user;
+      .then(() => {
+        // const loggedInUser = res.user;
         Swal.fire({
           // position: "top-end",
           icon: "success",
