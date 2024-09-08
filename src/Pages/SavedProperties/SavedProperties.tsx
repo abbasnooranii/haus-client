@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { PropertyType } from "../../types/PropertyType";
 import Haus from "../../Components/Hauses/Haus/Haus";
+import { Helmet } from "react-helmet";
 
 const SavedProperties = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,6 +21,9 @@ const SavedProperties = () => {
   });
   return (
     <main>
+      <Helmet>
+        <title>Saved Properties</title>
+      </Helmet>
       <div className="container mx-auto">
         <h1 className="text-4xl">Saved Properties</h1>
         <div>
