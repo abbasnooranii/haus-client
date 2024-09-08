@@ -24,7 +24,7 @@ const Signup = () => {
       return axiosPublic.post("/auth/signup", data);
     },
   });
-  console.log(Auth?.loading, isPending);
+
   const handleSignin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -58,7 +58,7 @@ const Signup = () => {
             icon: "success",
             title: data.data.message,
           });
-          navigate("/signin");
+          navigate("/");
         },
         onError: (err) => {
           console.log(err);
@@ -98,6 +98,7 @@ const Signup = () => {
       Auth?.setLoading(false);
     }
   };
+
   return (
     <main>
       <div className="container mx-auto">

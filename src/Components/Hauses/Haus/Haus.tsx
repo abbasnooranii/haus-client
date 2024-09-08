@@ -5,15 +5,38 @@ import { RiContactsBook3Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { PropertyType } from "../../../types/PropertyType";
 import useSearchContext from "../../../Hooks/useSearchContext";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Haus = ({ property }: { property: PropertyType }) => {
   const searchContext = useSearchContext();
+  const axiosSecure = useAxiosSecure();
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
   const { search } = searchContext;
+
+  const handleSaveProperty = async () => {
+    const res = await axiosSecure.post("/user/save-property", {
+      AGENT_REF: property.AGENT_REF,
+    });
+    if (res.status === 200) {
+      Swal.fire({
+        icon: "success",
+        title: "Property saved",
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Unable to save property",
+      });
+    }
+  };
+
   return (
-    <Link to={`/hauses/${property._id}`} className="block">
+    <div>
       <div className="border border-gray-400 rounded p-4 flex flex-col md:flex-row md:gap-8">
         <div className="md:hidden mb-6">
           <LocationRooms property={property} />
@@ -44,15 +67,18 @@ const Haus = ({ property }: { property: PropertyType }) => {
         </div>
         {/* --------Right Section---------- */}
         <div className="px-2 md:px-0 md:pt-8 flex flex-col justify-between">
-          <div>
+          <Link to={`/hauses/${property._id}`}>
             <div className="hidden md:block">
               <LocationRooms property={property} />
             </div>
             <p className="my-3 mb-6 font-medium">{property.SUMMARY}</p>
-          </div>
+          </Link>
           {/* --------Actions-------- */}
           <div className="flex gap-4 text-sm">
-            <button className="flex items-center gap-1 font-helvetica">
+            <button
+              className="flex items-center gap-1 font-helvetica"
+              onClick={handleSaveProperty}
+            >
               <FaHeart className="text-primary" /> Save
             </button>
             <button className="flex items-center gap-1 font-helvetica">
@@ -64,7 +90,7 @@ const Haus = ({ property }: { property: PropertyType }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

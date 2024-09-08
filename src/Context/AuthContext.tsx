@@ -55,7 +55,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
       if (currentUser) {
         const userInfo = { email: currentUser.email };
 
@@ -64,7 +63,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
         setLoading(false);
       } else {
-        console.log("Running else");
         setLoading(false);
       }
     });
