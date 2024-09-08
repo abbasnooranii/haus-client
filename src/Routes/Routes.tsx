@@ -18,12 +18,22 @@ import HausStudentLeeds from "../Pages/ContactUs/HausStudentLeeds/HausStudentLee
 import HausSalesandLettingsSouthYorkshire from "../Pages/ContactUs/HausSalesandLettingsSouthYorkshire/HausSalesandLettingsSouthYorkshire";
 import Signin from "../Pages/SignIn/Signin";
 import Signup from "../Pages/Signup/Signup";
+import SavedProperties from "../Pages/SavedProperties/SavedProperties";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        path: "/saved-properties",
+        element: (
+          <ProtectedRoute>
+            <SavedProperties />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "/signin",
         element: <Signin />,
@@ -82,7 +92,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact-haus-sales-and-lettings-south-yorkshire",
-        element: <HausSalesandLettingsSouthYorkshire />,  
+        element: <HausSalesandLettingsSouthYorkshire />,
       },
       {
         path: "/about-us",

@@ -10,7 +10,13 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import auth from "../../../firebase/firebase.config";
 
-const Haus = ({ property }: { property: PropertyType }) => {
+const Haus = ({
+  property,
+  refetchSavedProperties,
+}: {
+  property: PropertyType;
+  refetchSavedProperties?: () => void;
+}) => {
   const searchContext = useSearchContext();
   const Auth = useAuth();
   const navigate = useNavigate();
@@ -64,6 +70,7 @@ const Haus = ({ property }: { property: PropertyType }) => {
         showCancelButton: false,
         timer: 1200,
       });
+      refetchSavedProperties?.();
     } else if (res.status === 202) {
       Swal.fire({
         icon: "warning",

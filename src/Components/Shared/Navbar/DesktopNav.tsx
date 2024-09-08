@@ -133,6 +133,9 @@ const DesktopNav = ({
                     </p>
 
                     <li className="text-net-red hover:bg-net-red hover:text-white">
+                      <Link to="/saved-properties">Saved Properties</Link>
+                    </li>
+                    <li className="text-net-red hover:bg-net-red hover:text-white">
                       <button onClick={() => Auth?.logout()}>Logout</button>
                     </li>
                   </ul>
