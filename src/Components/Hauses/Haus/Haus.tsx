@@ -49,7 +49,35 @@ const Haus = ({ property }: { property: PropertyType }) => {
       });
     }
   };
-  console.log(Auth?.user);
+  const handleUnsaveProperty = async () => {
+    if (!Auth?.user) {
+      return navigate("/signin");
+    }
+    const res = await axiosSecure.post("/user/unsave-property", {
+      AGENT_REF: property.AGENT_REF,
+    });
+    if (res.status === 200) {
+      await Auth.handleAuthState(auth.currentUser);
+      Swal.fire({
+        icon: "success",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else if (res.status === 202) {
+      Swal.fire({
+        icon: "warning",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Unable to save property",
+      });
+    }
+  };
   return (
     <div>
       <div className="border border-gray-400 rounded p-4 flex flex-col md:flex-row md:gap-8">
@@ -94,7 +122,7 @@ const Haus = ({ property }: { property: PropertyType }) => {
             Auth?.user?.saved_properties.includes(property.AGENT_REF) ? (
               <button
                 className="flex items-center gap-1 font-helvetica"
-                onClick={handleSaveProperty}
+                onClick={handleUnsaveProperty}
               >
                 <FaHeart className="text-primary" /> Saved
               </button>
