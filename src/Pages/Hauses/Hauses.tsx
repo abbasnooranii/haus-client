@@ -7,10 +7,12 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { PropertyType } from "../../types/PropertyType";
 import { ChangeEvent, useState } from "react";
 import { Helmet } from "react-helmet";
+import useAuth from "../../Hooks/useAuth";
 
 const Hauses = () => {
   const searchContext = useSearchContext();
   const axiosPublic = useAxiosPublic();
+  const Auth = useAuth();
   const [properties, setProperties] = useState<PropertyType[]>([]);
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [sort, setSort] = useState<string>("");
@@ -60,6 +62,20 @@ const Hauses = () => {
       return res.data;
     },
   });
+
+  // Getting user
+  // const { data: userData, refetch: userRefetch } = useQuery({
+  //   queryKey: ["user"],
+  //   queryFn: async () => {
+  //     if (!Auth?.user) return;
+  //     const res = await axiosPublic.get("/user", {
+  //       withCredentials: true,
+  //     });
+  //     const { user } = res.data;
+  //     Auth.setUser({ ...Auth?.user, saved_properties: user.saved_properties });
+  //     return user;
+  //   },
+  // });
 
   const sortFunc = (sortby: string, defaultProperties?: PropertyType[]) => {
     const allProp = defaultProperties ? defaultProperties : [...properties];

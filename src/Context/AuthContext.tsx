@@ -12,21 +12,27 @@ import {
 import auth from "../firebase/firebase.config";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 
+interface UserType extends User {
+  saved_properties?: [string];
+}
+
 type contextType = {
-  user: User | null;
+  user: UserType | null;
   loading: boolean;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
+  setUser: React.Dispatch<SetStateAction<UserType | null>>;
   createAccount: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   updateAccount: (name: string, photoURL?: string) => Promise<void>;
+  handleAuthState: (currentUser: UserType | null) => void;
 };
 
 export const AuthContext = createContext<contextType | null>(null);
 
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const axiosPublic = useAxiosPublic();
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const createAccount = (email: string, password: string) => {
@@ -52,31 +58,40 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     return signOut(auth);
   };
 
+  const handleAuthState = async (currentUser: UserType | null) => {
+    setUser(currentUser);
+    if (currentUser) {
+      const userInfo = { email: currentUser.email };
+      await axiosPublic.post("/auth/jwt", userInfo, {
+        withCredentials: true,
+      });
+      const res = await axiosPublic.get("/user", {
+        withCredentials: true,
+      });
+      const { user } = res.data;
+      setUser({ ...user, saved_properties: user.saved_properties });
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        const userInfo = { email: currentUser.email };
-
-        await axiosPublic.post("/auth/jwt", userInfo, {
-          withCredentials: true,
-        });
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
+      await handleAuthState(currentUser);
     });
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [axiosPublic]);
 
   const context = {
     user,
     loading,
     setLoading,
+    setUser,
     createAccount,
     updateAccount,
     login,
     logout,
+    handleAuthState,
   };
 
   return (

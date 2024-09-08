@@ -7,4 +7,5 @@ export type UserType = {
   password: string;
   current_setuation: string;
   alerts: string;
+  saved_properties?: [string];
 };

@@ -31,6 +31,7 @@ const Signin = () => {
           title: err.message,
           icon: "error",
         });
+        Auth.setLoading(false);
         console.log(err);
       });
   };

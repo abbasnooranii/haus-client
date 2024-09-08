@@ -1,15 +1,19 @@
-import { FaHeart, FaShare } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaShare } from "react-icons/fa";
 import CardSlider from "./CardSlider";
 import LocationRooms from "./Location&Rooms";
 import { RiContactsBook3Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PropertyType } from "../../../types/PropertyType";
 import useSearchContext from "../../../Hooks/useSearchContext";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
+import auth from "../../../firebase/firebase.config";
 
 const Haus = ({ property }: { property: PropertyType }) => {
   const searchContext = useSearchContext();
+  const Auth = useAuth();
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
@@ -17,13 +21,24 @@ const Haus = ({ property }: { property: PropertyType }) => {
   const { search } = searchContext;
 
   const handleSaveProperty = async () => {
+    if (!Auth?.user) {
+      return navigate("/signin");
+    }
     const res = await axiosSecure.post("/user/save-property", {
       AGENT_REF: property.AGENT_REF,
     });
     if (res.status === 200) {
+      await Auth.handleAuthState(auth.currentUser);
       Swal.fire({
         icon: "success",
-        title: "Property saved",
+        title: res.data.message,
+        showCancelButton: false,
+        timer: 1200,
+      });
+    } else if (res.status === 202) {
+      Swal.fire({
+        icon: "warning",
+        title: res.data.message,
         showCancelButton: false,
         timer: 1200,
       });
@@ -34,7 +49,7 @@ const Haus = ({ property }: { property: PropertyType }) => {
       });
     }
   };
-
+  console.log(Auth?.user);
   return (
     <div>
       <div className="border border-gray-400 rounded p-4 flex flex-col md:flex-row md:gap-8">
@@ -75,12 +90,22 @@ const Haus = ({ property }: { property: PropertyType }) => {
           </Link>
           {/* --------Actions-------- */}
           <div className="flex gap-4 text-sm">
-            <button
-              className="flex items-center gap-1 font-helvetica"
-              onClick={handleSaveProperty}
-            >
-              <FaHeart className="text-primary" /> Save
-            </button>
+            {Auth?.user?.saved_properties &&
+            Auth?.user?.saved_properties.includes(property.AGENT_REF) ? (
+              <button
+                className="flex items-center gap-1 font-helvetica"
+                onClick={handleSaveProperty}
+              >
+                <FaHeart className="text-primary" /> Saved
+              </button>
+            ) : (
+              <button
+                className="flex items-center gap-1 font-helvetica"
+                onClick={handleSaveProperty}
+              >
+                <FaRegHeart className="text-primary" /> Save
+              </button>
+            )}
             <button className="flex items-center gap-1 font-helvetica">
               <FaShare className="text-blue-600" /> Share
             </button>
