@@ -1,10 +1,10 @@
 import { FormEvent } from "react";
 import { Link } from "react-router-dom";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 type UserType = {
   email: string;
@@ -12,12 +12,12 @@ type UserType = {
 };
 
 const Signin = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const Auth = useAuth();
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: UserType) => {
-      return axiosPublic.post("/auth/signin", data);
+      return axiosSecure.post("/auth/signin", data);
     },
   });
 
