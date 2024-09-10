@@ -1,8 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import useSearchContext from "../../../Hooks/useSearchContext";
+import MultiSelect from "../../Shared/Select/Select";
+import { useState } from "react";
 
 const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const searchContext = useSearchContext();
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const location = useLocation();
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
@@ -10,7 +13,7 @@ const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const { search, setSearch } = searchContext;
 
   return (
-    <div className=" container mx-auto px-3 gap-2 hidden md:flex">
+    <div className=" container mx-auto px-3 gap-2 hidden md:flex *:flex-1">
       {/* Type */}
       <select
         value={search.type}
@@ -21,7 +24,7 @@ const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
         <option value="to_buy">To Buy</option>
       </select>
       {/* Bedrooms */}
-      <select
+      {/* <select
         value={search.bedRooms}
         onChange={(e) =>
           setSearch({ ...search, bedRooms: parseInt(e.target.value) })
@@ -38,7 +41,13 @@ const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
         <option value="7">7</option>
         <option value="8">8</option>
         <option value="9">9</option>
-      </select>
+      </select> */}
+      <div>
+        <MultiSelect
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
+      </div>
 
       {/* Min price */}
       <select
