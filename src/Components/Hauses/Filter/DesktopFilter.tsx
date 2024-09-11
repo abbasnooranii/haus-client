@@ -1,11 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import useSearchContext from "../../../Hooks/useSearchContext";
 import MultiSelect from "../../Shared/Select/Select";
-import { useState } from "react";
 
 const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const searchContext = useSearchContext();
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const location = useLocation();
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
@@ -43,10 +41,7 @@ const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
         <option value="9">9</option>
       </select> */}
       <div>
-        <MultiSelect
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
-        />
+        <MultiSelect search={search} setSearch={setSearch} />
       </div>
 
       {/* Min price */}

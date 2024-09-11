@@ -10,7 +10,13 @@ const Hero = () => {
   const tempRoom = [...Array(9).keys()];
 
   const handleRoomCountChange = (room: number) => {
-    setSearch({ ...search, bedRooms: room });
+    setSearch({ ...search, bedRooms: [...search.bedRooms, room] });
+  };
+  const handleRoomCountDelete = (room: number) => {
+    setSearch({
+      ...search,
+      bedRooms: search.bedRooms.filter((rm) => rm !== room),
+    });
   };
 
   return (
@@ -55,12 +61,17 @@ const Hero = () => {
             <div className="flex justify-between *:border *:border-textBlack *:px-[10px] *:py-1 *:rounded">
               {tempRoom.map((room, i) => (
                 <button
-                  onClick={() => handleRoomCountChange(room + 1)}
+                  onClick={() =>
+                    search.bedRooms.includes(room + 1)
+                      ? handleRoomCountDelete(room + 1)
+                      : handleRoomCountChange(room + 1)
+                  }
                   key={i}
                   className={
-                    search.bedRooms === room + 1
+                    search.bedRooms.includes(room + 1)
                       ? "bg-textBlack text-white"
                       : "bg-cGray"
+                    // .bedRooms === room + 1
                   }
                 >
                   {room + 1}
@@ -135,20 +146,7 @@ const Hero = () => {
               <option value={"9"}>Studio</option>
               <option value={"48"}>Room Only</option>
             </select>
-            {/* Location */}
-            {/* <select
-              value={search.location}
-              onChange={(e) =>
-                setSearch({ ...search, location: e.target.value })
-              }
-              className="select select-bordered w-full "
-            >
-              <option disabled value="">
-                Location
-              </option>
-              <option value={"London"}>London</option>
-              <option value={"Toronto"}>Toronto</option>
-            </select> */}
+
             <input
               type="text"
               className="input input-bordered w-full"

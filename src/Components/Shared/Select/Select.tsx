@@ -1,35 +1,18 @@
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
-
-// Define the shape of each option
-interface OptionType {
-  id: number;
-  value: string;
-  label: string;
-}
+import { SearchCredentialsType } from "../../../Context/SearchContext";
 
 // Options array
-const options: OptionType[] = [
-  { id: 1, value: "1", label: "1" },
-  { id: 2, value: "2", label: "2" },
-  { id: 3, value: "3", label: "3" },
-  { id: 4, value: "4", label: "4" },
-  { id: 5, value: "5", label: "5" },
-  { id: 6, value: "6", label: "6" },
-  { id: 7, value: "7", label: "7" },
-  { id: 8, value: "8", label: "8" },
-  { id: 9, value: "9", label: "9" },
-  { id: 10, value: "10", label: "10" },
-];
+const options: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // MultiSelect component
 const MultiSelect = ({
-  selectedOptions,
-  setSelectedOptions,
+  search,
+  setSearch,
 }: {
-  selectedOptions: number[];
-  setSelectedOptions: React.Dispatch<SetStateAction<number[]>>;
+  search: SearchCredentialsType;
+  setSearch: React.Dispatch<SetStateAction<SearchCredentialsType>>;
 }) => {
-  //   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
+  //   const [selectedOptions, setSearch] = useState<number[]>([]);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -52,10 +35,13 @@ const MultiSelect = ({
 
   // Handle option toggle
   const toggleOption = (id: number) => {
-    if (selectedOptions.includes(id)) {
-      setSelectedOptions(selectedOptions.filter((optionId) => optionId !== id));
+    if (search.bedRooms.includes(id)) {
+      setSearch({
+        ...search,
+        bedRooms: search.bedRooms.filter((optionId) => optionId !== id),
+      });
     } else {
-      setSelectedOptions([...selectedOptions, id]);
+      setSearch({ ...search, bedRooms: [...search.bedRooms, id] });
     }
   };
 
@@ -68,23 +54,17 @@ const MultiSelect = ({
         >
           {/* Selected Options */}
           <div className="flex gap-2">
-            {selectedOptions.length > 0 ? (
-              selectedOptions.map((optionId) => {
+            {search.bedRooms.length > 0 ? (
+              search.bedRooms.map((optionId) => {
                 const selectedOption = options.find(
-                  (option) => option.id === optionId
+                  (option) => option === optionId
                 );
                 return (
                   <span
                     key={optionId}
                     className="bg-primary text-white px-3 py-1 rounded-full text-sm flex items-center"
                   >
-                    {selectedOption?.label}
-                    {/* <button
-                    className="ml-2 text-white font-bold"
-                    onClick={() => toggleOption(optionId)}
-                  >
-                    &times;
-                  </button> */}
+                    {selectedOption}
                   </span>
                 );
               })
@@ -103,21 +83,21 @@ const MultiSelect = ({
         >
           {options.map((option) => (
             <div
-              key={option.id}
+              key={option}
               className={`p-2 cursor-pointer ${
-                selectedOptions.includes(option.id)
+                search.bedRooms.includes(option)
                   ? "bg-blue-100"
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => toggleOption(option.id)}
+              onClick={() => toggleOption(option)}
             >
               <input
                 type="checkbox"
-                checked={selectedOptions.includes(option.id)}
-                onChange={() => toggleOption(option.id)}
+                checked={search.bedRooms.includes(option)}
+                onChange={() => toggleOption(option)}
                 className="mr-2"
               />
-              {option.label}
+              {option}
             </div>
           ))}
         </div>

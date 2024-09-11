@@ -12,7 +12,14 @@ const MobileFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const tempRoom = [...Array(9).keys()];
 
   const handleRoomCountChange = (room: number) => {
-    setSearch({ ...search, bedRooms: room });
+    setSearch({ ...search, bedRooms: [...search.bedRooms, room] });
+  };
+
+  const handleRoomCountDelete = (room: number) => {
+    setSearch({
+      ...search,
+      bedRooms: search.bedRooms.filter((rm) => rm !== room),
+    });
   };
 
   return (
@@ -57,12 +64,17 @@ const MobileFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
             <div className="flex justify-between *:border *:border-textBlack *:px-[10px] *:py-1 *:rounded">
               {tempRoom.map((room, i) => (
                 <button
-                  onClick={() => handleRoomCountChange(room + 1)}
+                  onClick={() =>
+                    search.bedRooms.includes(room + 1)
+                      ? handleRoomCountDelete(room + 1)
+                      : handleRoomCountChange(room + 1)
+                  }
                   key={i}
                   className={
-                    search.bedRooms === room + 1
+                    search.bedRooms.includes(room + 1)
                       ? "bg-textBlack text-white"
                       : "bg-cGray"
+                    // .bedRooms === room + 1
                   }
                 >
                   {room + 1}
