@@ -45,18 +45,17 @@ const Hauses = () => {
     queryKey: ["properties", selectedPage],
     enabled: !!searchContext,
     queryFn: async () => {
-      const res = { data: [] };
-      // await axiosPublic.get(
-      //   `/property?agent_ref=${
-      //     searchContext?.search.type === "to_let" ? "r" : "s"
-      //   }&badrooms=${searchContext?.search.bedRooms}&max_price=${
-      //     searchContext?.search.max_price
-      //   }&min_price=${searchContext?.search.min_price}&prop_sub_id=${
-      //     searchContext?.search.property_type
-      //   }&location=${
-      //     searchContext?.search.location
-      //   }&selectedPage=${selectedPage}`
-      // );
+      const res = await axiosPublic.get(
+        `/property?agent_ref=${
+          searchContext?.search.type === "to_let" ? "r" : "s"
+        }&badrooms=${searchContext?.search.bedRooms.join(",")}&max_price=${
+          searchContext?.search.max_price
+        }&min_price=${searchContext?.search.min_price}&prop_sub_id=${
+          searchContext?.search.property_type
+        }&location=${
+          searchContext?.search.location
+        }&selectedPage=${selectedPage}`
+      );
       sortFunc(sort, res.data);
       return res.data;
     },

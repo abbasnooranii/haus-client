@@ -55,16 +55,17 @@ const MultiSelect = ({
           {/* Selected Options */}
           <div className="flex gap-2">
             {search.bedRooms.length > 0 ? (
-              search.bedRooms.map((optionId) => {
+              search.bedRooms.map((optionId, i) => {
                 const selectedOption = options.find(
                   (option) => option === optionId
                 );
                 return (
                   <span
                     key={optionId}
-                    className="bg-primary text-white px-3 py-1 rounded-full text-sm flex items-center"
+                    className="rounded-full text-sm flex items-center"
                   >
-                    {selectedOption}
+                    {selectedOption}{" "}
+                    {i === search.bedRooms.length - 1 ? "" : ","}
                   </span>
                 );
               })
