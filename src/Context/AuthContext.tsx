@@ -33,7 +33,7 @@ export const AuthContext = createContext<contextType | null>(null);
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState<UserType | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const createAccount = (email: string, password: string) => {
     setLoading(true);
@@ -69,7 +69,11 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
         withCredentials: true,
       });
       const { user } = res.data;
-      setUser({ ...user, saved_properties: user.saved_properties });
+      setUser({
+        ...user,
+        displayName: user.name,
+        saved_properties: user.saved_properties,
+      });
     }
     setLoading(false);
   };

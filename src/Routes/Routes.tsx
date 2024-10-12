@@ -20,6 +20,7 @@ import Signin from "../Pages/SignIn/Signin";
 import Signup from "../Pages/Signup/Signup";
 import SavedProperties from "../Pages/SavedProperties/SavedProperties";
 import ProtectedRoute from "./ProtectedRoute";
+import SavedSearches from "../Pages/SavedSearches/SavedSearches";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SavedProperties />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/saved-searches",
+        element: (
+          <ProtectedRoute>
+            <SavedSearches />
           </ProtectedRoute>
         ),
       },

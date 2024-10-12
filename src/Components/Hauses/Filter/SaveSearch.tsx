@@ -20,15 +20,6 @@ const SaveSearch = () => {
     },
   });
 
-  // const { data: savedSearches } = useQuery({
-  //   queryKey: ["saved-search"],
-  //   queryFn: async () => {
-  //     const res = await axiosSecure.get("/save-search");
-
-  //     return res.data;
-  //   },
-  // });
-
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
@@ -71,7 +62,7 @@ const SaveSearch = () => {
       {search.saved.status ? (
         <button className="btn" onClick={handleUnsaveSearch}>
           Saved
-          <FaHeart size={20} />
+          <FaHeart size={20} className="text-primary" />
         </button>
       ) : (
         <button className="btn" onClick={handleSaveSearch}>
