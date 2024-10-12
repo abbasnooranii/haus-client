@@ -1,6 +1,7 @@
 import { createContext, SetStateAction, useState } from "react";
 
 export type SearchCredentialsType = {
+  _id?: string;
   type: string;
   bedRooms: number[];
   min_price: number;

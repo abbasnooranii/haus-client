@@ -14,6 +14,7 @@ const SaveSearch = () => {
       return axiosSecure.post("/save-search", data);
     },
   });
+
   const { mutate: UnsaveSearchFn } = useMutation({
     mutationFn: (id: string) => {
       return axiosSecure.delete(`/save-search/${id}`);

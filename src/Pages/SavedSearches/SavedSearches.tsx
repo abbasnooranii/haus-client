@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { SearchCredentialsType } from "../../Context/SearchContext";
@@ -9,12 +9,22 @@ import { FaHeart } from "react-icons/fa";
 const SavedSearches = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: savedSearches, isLoading } = useQuery<SearchCredentialsType[]>({
+  const {
+    data: savedSearches,
+    isLoading,
+    refetch,
+  } = useQuery<SearchCredentialsType[]>({
     queryKey: ["saved-search"],
     queryFn: async () => {
       const res = await axiosSecure.get("/save-search");
 
       return res.data;
+    },
+  });
+
+  const { mutate: UnsaveSearchFn } = useMutation({
+    mutationFn: (id: string) => {
+      return axiosSecure.delete(`/save-search/${id}`);
     },
   });
 
@@ -38,6 +48,19 @@ const SavedSearches = () => {
       default:
         return "ANY TYPE";
     }
+  };
+
+  const handleUnsaveSearch = (id: string) => {
+    UnsaveSearchFn(id, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          refetch();
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    });
   };
 
   return (
@@ -83,7 +106,10 @@ const SavedSearches = () => {
                         <button className="btn btn-circle btn-outline border-primary text-primary hover:bg-primary hover:text-white hover:border-primary mr-3 border">
                           <CiSearch size={25} className="font-semibold" />
                         </button>
-                        <button>
+                        <button
+                          className="btn btn-circle btn-outline border-primary hover:bg-primary/20 hover:border-primary/20"
+                          onClick={() => handleUnsaveSearch(search._id!)}
+                        >
                           <FaHeart size={23} className="text-primary" />
                         </button>
                       </td>
