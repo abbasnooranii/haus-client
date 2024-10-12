@@ -18,10 +18,10 @@ const Filter = ({
     return <h1> Something went wrong. </h1>;
   }
   const { search, setSearch } = searchContext;
+
   const handleSearch = async () => {
     // Checking if the save is already saved or not
     const res = await axiosSecure.post("/save-search/check", search);
-    console.log(res);
     if (res.data.success) {
       setSearch({
         ...search,
@@ -31,6 +31,7 @@ const Filter = ({
       setSearch({ ...search, saved: { status: false, save_search_id: null } });
     }
 
+    // Getting the page count and search properties
     if (refetchPageCount && refetchProperties) {
       refetchProperties();
       refetchPageCount();

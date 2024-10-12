@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import useSearchContext from "../../../Hooks/useSearchContext";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { SearchCredentialsType } from "../../../Context/SearchContext";
@@ -9,20 +9,25 @@ const SaveSearch = () => {
   const searchContext = useSearchContext();
   const axiosSecure = useAxiosSecure();
 
-  const { mutate: SaveSearchFn, isPending } = useMutation({
+  const { mutate: SaveSearchFn } = useMutation({
     mutationFn: (data: SearchCredentialsType) => {
       return axiosSecure.post("/save-search", data);
     },
   });
-
-  const { data: savedSearches } = useQuery({
-    queryKey: ["saved-search"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/save-search");
-
-      return res.data;
+  const { mutate: UnsaveSearchFn } = useMutation({
+    mutationFn: (id: string) => {
+      return axiosSecure.delete(`/save-search/${id}`);
     },
   });
+
+  // const { data: savedSearches } = useQuery({
+  //   queryKey: ["saved-search"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get("/save-search");
+
+  //     return res.data;
+  //   },
+  // });
 
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
@@ -45,10 +50,26 @@ const SaveSearch = () => {
     });
   };
 
+  const handleUnsaveSearch = () => {
+    UnsaveSearchFn(search.saved.save_search_id!, {
+      onSuccess: (data) => {
+        if (data.data.success) {
+          setSearch({
+            ...search,
+            saved: { status: false, save_search_id: null },
+          });
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    });
+  };
+
   return (
     <div className="container mx-auto px-3 text-right my-6">
       {search.saved.status ? (
-        <button className="btn" onClick={handleSaveSearch}>
+        <button className="btn" onClick={handleUnsaveSearch}>
           Saved
           <FaHeart size={20} />
         </button>
