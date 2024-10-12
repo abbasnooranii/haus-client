@@ -7,6 +7,10 @@ export type SearchCredentialsType = {
   max_price: number;
   property_type: string;
   location: string;
+  saved: {
+    status: boolean;
+    save_search_id: string | null;
+  };
 };
 
 export type SearchContextType = {
@@ -24,6 +28,10 @@ const SearchContextProvider = ({ children }: { children: React.ReactNode }) => {
     max_price: 0,
     property_type: "",
     location: "",
+    saved: {
+      status: false,
+      save_search_id: null,
+    },
   });
 
   return (

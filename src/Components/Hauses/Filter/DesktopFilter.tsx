@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import useSearchContext from "../../../Hooks/useSearchContext";
 import MultiSelect from "../../Shared/Select/Select";
-
 const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
   const searchContext = useSearchContext();
   const location = useLocation();
@@ -21,25 +20,7 @@ const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
         <option value="to_let">To Let</option>
         <option value="to_buy">To Buy</option>
       </select>
-      {/* Bedrooms */}
-      {/* <select
-        value={search.bedRooms}
-        onChange={(e) =>
-          setSearch({ ...search, bedRooms: parseInt(e.target.value) })
-        }
-        className="select select-bordered w-full max-w-xs"
-      >
-        <option value="0">BEDROOMS</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-      </select> */}
+
       <div>
         <MultiSelect search={search} setSearch={setSearch} />
       </div>
@@ -107,18 +88,6 @@ const DesktopFilter = ({ handleSearch }: { handleSearch?: () => void }) => {
         <option value={"48"}>Room Only</option>
       </select>
 
-      {/* Location */}
-      {/* <select
-        value={search.location}
-        onChange={(e) => setSearch({ ...search, location: e.target.value })}
-        className="select select-bordered w-full "
-      >
-        <option disabled value="">
-          Location
-        </option>
-        <option value={"London"}>London</option>
-        <option value={"Toronto"}>Toronto</option>
-      </select> */}
       <input
         type="text"
         className="input input-bordered w-full"
