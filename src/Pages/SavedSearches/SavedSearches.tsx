@@ -5,10 +5,13 @@ import { SearchCredentialsType } from "../../Context/SearchContext";
 import Loader from "../../Components/Shared/Loader/Loader";
 import { CiSearch } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import useSearchContext from "../../Hooks/useSearchContext";
+import { useNavigate } from "react-router-dom";
 
 const SavedSearches = () => {
   const axiosSecure = useAxiosSecure();
-
+  const searchContext = useSearchContext();
+  const navigate = useNavigate();
   const {
     data: savedSearches,
     isLoading,
@@ -27,6 +30,11 @@ const SavedSearches = () => {
       return axiosSecure.delete(`/save-search/${id}`);
     },
   });
+
+  if (!searchContext) {
+    return <h1> Something went wrong. </h1>;
+  }
+  const { search, setSearch } = searchContext;
 
   const getPropertyType = (str: string) => {
     switch (str) {
@@ -61,6 +69,22 @@ const SavedSearches = () => {
         console.log(err);
       },
     });
+  };
+
+  const handleSearch = (src: SearchCredentialsType) => {
+    setSearch({
+      type: src.type,
+      bedRooms: src.bedRooms,
+      min_price: src.min_price,
+      max_price: src.max_price,
+      location: src.location,
+      property_type: src.property_type,
+      saved: {
+        status: true,
+        save_search_id: src._id!,
+      },
+    });
+    navigate("/hauses");
   };
 
   return (
@@ -103,7 +127,10 @@ const SavedSearches = () => {
                       <td>{getPropertyType(search.property_type)}</td>
                       <td>{search.location}</td>
                       <td>
-                        <button className="btn btn-circle btn-outline border-primary text-primary hover:bg-primary hover:text-white hover:border-primary mr-3 border">
+                        <button
+                          className="btn btn-circle btn-outline border-primary text-primary hover:bg-primary hover:text-white hover:border-primary mr-3 border"
+                          onClick={() => handleSearch(search)}
+                        >
                           <CiSearch size={25} className="font-semibold" />
                         </button>
                         <button
