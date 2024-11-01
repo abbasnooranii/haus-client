@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useSearchContext from "../../../Hooks/useSearchContext";
 import DesktopFilter from "./DesktopFilter";
@@ -7,9 +8,11 @@ import SaveSearch from "./SaveSearch";
 const Filter = ({
   refetchProperties,
   refetchPageCount,
+  setSelectedPage,
 }: {
-  refetchProperties?: () => void;
-  refetchPageCount?: () => void;
+  refetchProperties: () => void;
+  refetchPageCount: () => void;
+  setSelectedPage: Dispatch<SetStateAction<number>>;
 }) => {
   const searchContext = useSearchContext();
   const axiosSecure = useAxiosSecure();
@@ -30,6 +33,7 @@ const Filter = ({
     } else {
       setSearch({ ...search, saved: { status: false, save_search_id: null } });
     }
+    setSelectedPage(1);
 
     // Getting the page count and search properties
     if (refetchPageCount && refetchProperties) {

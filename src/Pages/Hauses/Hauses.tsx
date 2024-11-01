@@ -108,7 +108,11 @@ const Hauses = () => {
         <title>Hauses</title>
         {/* <meta name="description" content="Helmet application" /> */}
       </Helmet>
-      <Filter refetchProperties={refetch} refetchPageCount={pageCountRefetch} />
+      <Filter
+        refetchProperties={refetch}
+        refetchPageCount={pageCountRefetch}
+        setSelectedPage={setSelectedPage}
+      />
       {isLoading ? (
         <div className="w-full min-h-screen flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>

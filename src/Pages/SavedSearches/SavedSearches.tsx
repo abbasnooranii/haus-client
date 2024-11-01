@@ -118,7 +118,7 @@ const SavedSearches = () => {
               <tbody>
                 {savedSearches &&
                   savedSearches.map((search, i) => (
-                    <tr>
+                    <tr key={search._id}>
                       <th>{i + 1}</th>
                       <td>{search.type === "to_let" ? "To Let" : "To Buy"}</td>
                       <td>{search.bedRooms.join(", ")}</td>
