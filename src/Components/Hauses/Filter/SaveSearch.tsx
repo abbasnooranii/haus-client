@@ -35,6 +35,7 @@ const SaveSearch = () => {
             saved: { status: true, save_search_id: data.data.id },
           });
         }
+        // console.log(data.data);
       },
       onError: (err) => {
         console.log(err);

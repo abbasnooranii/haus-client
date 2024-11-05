@@ -7,6 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import useSearchContext from "../../Hooks/useSearchContext";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SavedSearches = () => {
   const axiosSecure = useAxiosSecure();
@@ -87,13 +88,38 @@ const SavedSearches = () => {
     navigate("/hauses");
   };
 
+  const handleAlertChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const res = await axiosSecure.post("/alert", { alert: e.target.value });
+
+    Swal.fire({
+      icon: "success",
+      title: res.data.message,
+      timer: 1200,
+    });
+  };
+
   return (
     <main>
       <Helmet>
         <title>Saved Searches</title>
       </Helmet>
       <div className="container mx-auto my-6">
-        <h1 className="text-3xl font-semibold mb-12">Saved Searches</h1>
+        <div className="flex justify-between flex-col md:flex-row">
+          <h1 className="text-3xl font-semibold mb-12">Saved Searches</h1>
+          <div className="flex items-center gap-3">
+            <h5>Get Alert: </h5>
+            <select
+              // value={search.property_type}
+              onChange={handleAlertChange}
+              className="select select-bordered "
+            >
+              <option value={"immediately"}>Immediately</option>
+              <option value={"weekly"}>Weekly</option>
+              <option value={"monthly"}>Monthly</option>
+              <option value={"never"}>Never</option>
+            </select>
+          </div>
+        </div>
 
         {isLoading ? (
           <div className="w-full min-h-screen flex justify-center">
