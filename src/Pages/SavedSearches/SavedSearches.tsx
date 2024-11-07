@@ -8,11 +8,15 @@ import { FaHeart } from "react-icons/fa";
 import useSearchContext from "../../Hooks/useSearchContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 
 const SavedSearches = () => {
   const axiosSecure = useAxiosSecure();
   const searchContext = useSearchContext();
   const navigate = useNavigate();
+  const [alert_type, setAlertType] = useState<string>("");
+
+  // Getting the saved searches
   const {
     data: savedSearches,
     isLoading,
@@ -21,7 +25,6 @@ const SavedSearches = () => {
     queryKey: ["saved-search"],
     queryFn: async () => {
       const res = await axiosSecure.get("/save-search");
-
       return res.data;
     },
   });
@@ -31,6 +34,15 @@ const SavedSearches = () => {
       return axiosSecure.delete(`/save-search/${id}`);
     },
   });
+
+  const refetchAlertType = async () => {
+    const res2 = await axiosSecure.get("/alert");
+    setAlertType(res2.data.alert_type);
+  };
+
+  useEffect(() => {
+    refetchAlertType();
+  }, []);
 
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
@@ -89,8 +101,11 @@ const SavedSearches = () => {
   };
 
   const handleAlertChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAlertType(e.target.value);
     const res = await axiosSecure.post("/alert", { alert: e.target.value });
-
+    // if (res.data.success) {
+    //   console.log("Setting the value");
+    // }
     Swal.fire({
       icon: "success",
       title: res.data.message,
@@ -110,6 +125,7 @@ const SavedSearches = () => {
             <h5>Get Alert: </h5>
             <select
               // value={search.property_type}
+              value={alert_type}
               onChange={handleAlertChange}
               className="select select-bordered "
             >
