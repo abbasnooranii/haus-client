@@ -21,6 +21,7 @@ import Signup from "../Pages/Signup/Signup";
 import SavedProperties from "../Pages/SavedProperties/SavedProperties";
 import ProtectedRoute from "./ProtectedRoute";
 import SavedSearches from "../Pages/SavedSearches/SavedSearches";
+import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/password-recovery",
+        element: <ForgotPassword />,
       },
       {
         path: "/",

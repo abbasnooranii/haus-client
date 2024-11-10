@@ -3,6 +3,7 @@ import React from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -22,6 +23,7 @@ type contextType = {
   setLoading: React.Dispatch<SetStateAction<boolean>>;
   setUser: React.Dispatch<SetStateAction<UserType | null>>;
   createAccount: (email: string, password: string) => Promise<UserCredential>;
+  forgotPassword: (email: string) => Promise<void>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   updateAccount: (name: string, photoURL?: string) => Promise<void>;
@@ -50,6 +52,10 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const login = (email: string, password: string) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const forgotPassword = (email: string) => {
+    return sendPasswordResetEmail(auth, email);
   };
 
   const logout = async () => {
@@ -96,6 +102,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     login,
     logout,
     handleAuthState,
+    forgotPassword,
   };
 
   return (
