@@ -4,10 +4,14 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { SearchCredentialsType } from "../../../Context/SearchContext";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const SaveSearch = () => {
   const searchContext = useSearchContext();
   const axiosSecure = useAxiosSecure();
+  const Auth = useAuth();
+  const navigate = useNavigate();
 
   const { mutate: SaveSearchFn } = useMutation({
     mutationFn: (data: SearchCredentialsType) => {
@@ -27,6 +31,10 @@ const SaveSearch = () => {
   const { search, setSearch } = searchContext;
 
   const handleSaveSearch = () => {
+    if (!Auth?.user) {
+      return navigate("/signin");
+    }
+
     SaveSearchFn(search, {
       onSuccess: (data) => {
         if (data.data.success) {

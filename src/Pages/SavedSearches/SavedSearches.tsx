@@ -47,7 +47,7 @@ const SavedSearches = () => {
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
-  const { search, setSearch } = searchContext;
+  const { setSearch } = searchContext;
 
   const getPropertyType = (str: string) => {
     switch (str) {
