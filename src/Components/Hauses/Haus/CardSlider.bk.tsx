@@ -46,12 +46,11 @@ const CardSlider = ({ property }: { property: PropertyType }) => {
           ) {
             return;
           }
-          console.log(property)
           return (
             <SwiperSlide key={i}>
               <div className="flex gap-1">
                 <img
-                  src={`https://files.haus-properties.com/upload/${
+                  src={`${import.meta.env.VITE_API_URL}/api/images/${
                     (property as Record<string, string>)[name[0]]
                   }`}
                   alt={
@@ -69,7 +68,7 @@ const CardSlider = ({ property }: { property: PropertyType }) => {
                   className="w-1/2"
                 />
                 <img
-                  src={`https://files.haus-properties.com/upload/${
+                  src={`${import.meta.env.VITE_API_URL}/api/images/${
                     (property as Record<string, string>)[name[1]]
                   }`}
                   alt={
