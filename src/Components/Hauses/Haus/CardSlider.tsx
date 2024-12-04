@@ -46,7 +46,7 @@ const CardSlider = ({ property }: { property: PropertyType }) => {
           ) {
             return;
           }
-          console.log(property)
+
           return (
             <SwiperSlide key={i}>
               <div className="flex gap-1">
