@@ -210,8 +210,9 @@ const DesktopNav = ({
       </div>
       {/* Nested menus */}
       <div
-        className={`min-w-[100vw] absolute left-0 bg-[#f7f0e7] px-8 py-12 ${showResources ? "top-0" : "-top-[120%]"
-          } duration-500 z-10`}
+        className={`w-100 absolute left-0 bg-[#f7f0e7] px-8 py-12 ${
+          showResources ? "top-0" : "-top-[120%]"
+        } duration-500 z-10`}
       >
         {/* Topbar */}
         <div className="flex items-center font-helvetica">
