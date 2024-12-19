@@ -102,8 +102,6 @@ const Hauses = () => {
     setShowLetAgreed(event);
   };
 
-
-
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
