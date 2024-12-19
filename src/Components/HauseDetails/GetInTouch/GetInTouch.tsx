@@ -3,8 +3,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useMutation } from "@tanstack/react-query";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Swal from "sweetalert2";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface RaferFormType {
   name: string;
@@ -17,14 +18,24 @@ interface RaferFormType {
 const GetInTouch = () => {
   const axiosPublic = useAxiosPublic();
 
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const RECAPTCHA_SITE_KEY = '6Le9cwUTAAAAAGqeh8mx3y-siDLL6G3RW--fZeQn';
   const { mutate, isPending } = useMutation({
     mutationFn: (formData: RaferFormType) => {
       return axiosPublic.post("/send-touch-mail", formData);
     },
   });
 
+  const handleCaptchaChange = (token: any) => {
+    setCaptchaToken(token);
+  };
+
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // if (!captchaToken) {
+    //   alert('Please complete the CAPTCHA!');
+    //   return;
+    // }
     const form = e.currentTarget;
     const name = form.user_name.value;
     const email = form.email.value;
@@ -51,6 +62,7 @@ const GetInTouch = () => {
         console.log(error);
       },
     });
+    setCaptchaToken(null);
   };
 
   const mapSrc =
@@ -128,7 +140,11 @@ const GetInTouch = () => {
             required
             rows={8}
           ></textarea>
-
+          <ReCAPTCHA
+            sitekey={RECAPTCHA_SITE_KEY}
+            onChange={handleCaptchaChange}
+            onExpired={() => setCaptchaToken(null)} // Reset on expiration
+          />
           <button
             type="submit"
             className="btn btn-primary w-full rounded-none btn-filled"

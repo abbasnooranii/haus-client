@@ -14,46 +14,43 @@ const Hauses = () => {
   const [properties, setProperties] = useState<PropertyType[]>([]);
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [sort, setSort] = useState<string>("");
-
+  const [priceIncludingBills, setPriceIncludingBills] = useState<boolean>(false);
+  const [showLetAgreed, setShowLetAgreed] = useState(false);
   // Getting Page count
   const {
     refetch: pageCountRefetch,
     data: pageCount,
     isLoading: pageCountLoading,
     isError: pageCountError,
-  } = useQuery<{ count: number }>({
-    queryKey: ["property-count"],
+  } = useQuery<{ count: number, totalProp: number }>({
+    queryKey: ["property-count", showLetAgreed],
     enabled: !!searchContext,
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/property/page-count?agent_ref=${
-          searchContext?.search.type === "to_let" ? "r" : "s"
-        }&badrooms=${searchContext?.search.bedRooms}&max_price=${
-          searchContext?.search.max_price
-        }&min_price=${searchContext?.search.min_price}&prop_sub_id=${
-          searchContext?.search.property_type
-        }&location=${
-          searchContext?.search.location
+        `/property/page-count?agent_ref=${searchContext?.search.type === "to_let" ? "r" : "s"
+        }&badrooms=${searchContext?.search.bedRooms}&max_price=${searchContext?.search.max_price
+        }&min_price=${searchContext?.search.min_price}&prop_sub_id=${searchContext?.search.property_type
+        }&location=${searchContext?.search.location
+        }&showLetAgreed=${showLetAgreed
+        }&priceIncludingBills=${priceIncludingBills
         }&selectedPage=${selectedPage}`
       );
       return res.data;
     },
   });
-
   // Getting Properties
   const { refetch, isLoading, isError } = useQuery<PropertyType[]>({
-    queryKey: ["properties", selectedPage],
+    queryKey: ["properties", selectedPage, showLetAgreed],
     enabled: !!searchContext,
     queryFn: async () => {
+      console.log(showLetAgreed)
       const res = await axiosPublic.get(
-        `/property?agent_ref=${
-          searchContext?.search.type === "to_let" ? "r" : "s"
-        }&badrooms=${searchContext?.search.bedRooms.join(",")}&max_price=${
-          searchContext?.search.max_price
-        }&min_price=${searchContext?.search.min_price}&prop_sub_id=${
-          searchContext?.search.property_type
-        }&location=${
-          searchContext?.search.location
+        `/property?agent_ref=${searchContext?.search.type === "to_let" ? "r" : "s"
+        }&badrooms=${searchContext?.search.bedRooms.join(",")}&max_price=${searchContext?.search.max_price
+        }&min_price=${searchContext?.search.min_price}&prop_sub_id=${searchContext?.search.property_type
+        }&location=${searchContext?.search.location
+        }&showLetAgreed=${showLetAgreed
+        }&priceIncludingBills=${priceIncludingBills
         }&selectedPage=${selectedPage}`
       );
       sortFunc(sort, res.data);
@@ -63,7 +60,6 @@ const Hauses = () => {
 
   const sortFunc = (sortby: string, defaultProperties?: PropertyType[]) => {
     const allProp = defaultProperties ? defaultProperties : [...properties];
-
     if (sortby === "price-asc") {
       const sortedProperties = allProp.sort(
         (a, b) => parseFloat(a.PRICE) - parseFloat(b.PRICE)
@@ -98,6 +94,16 @@ const Hauses = () => {
     sortFunc(value);
   };
 
+  const handlePriceBillsChange = (event: boolean) => {
+    setPriceIncludingBills(event);
+  };
+
+  const handleLetAgreedChange = (event: boolean) => {
+    setShowLetAgreed(event);
+  };
+
+
+
   if (!searchContext) {
     return <h1> Something went wrong. </h1>;
   }
@@ -125,9 +131,13 @@ const Hauses = () => {
         <>
           <Controller
             properties={properties}
-            propertiesCount={properties?.length}
+            propertiesCount={pageCount?.totalProp}
             setSelectedPage={setSelectedPage}
             selectedPage={selectedPage}
+            priceIncludingBills={priceIncludingBills}
+            handlePriceBillsChange={handlePriceBillsChange}
+            showLetAgreed={showLetAgreed}
+            handleLetAgreedChange={handleLetAgreedChange}
             sort={sort}
             handleSortChange={handleSortChange}
             pageCount={pageCount}

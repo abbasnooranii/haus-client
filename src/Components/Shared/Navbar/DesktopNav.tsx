@@ -6,7 +6,7 @@ import { TbTriangleInvertedFilled } from "react-icons/tb";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ResourcesLinkType } from "../../../types/ResourcesLinkType";
 import useAuth from "../../../Hooks/useAuth";
 
@@ -72,6 +72,35 @@ const DesktopNav = ({
     </>
   );
 
+  useEffect(() => {
+    const loadGoogleTranslateScript = () => {
+      const script = document.createElement('script');
+      script.src =
+        '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+
+      // Append the script to the document
+      document.body.appendChild(script);
+
+      // Define the callback for initialization
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          { pageLanguage: 'en' },
+          'google_translate_element'
+        );
+      };
+    };
+
+    
+
+    // Check if the script is already loaded
+    if (!window.google || !window.google.translate) {
+      loadGoogleTranslateScript();
+    } else {
+      window.googleTranslateElementInit();
+    }
+  }, []);
+
   return (
     <div className="bg-base-100 hidden lg:flex">
       <div className="navbar pt-3 pb-6 ">
@@ -80,7 +109,7 @@ const DesktopNav = ({
             <Link to={"/"} className="h-10">
               <Logo />
             </Link>
-            <button className="btn btn-outline btn-secondary">
+            <button className="btn btn-outline btn-secondary btn-valuation">
               Instant Valuation
             </button>
           </div>
@@ -89,7 +118,8 @@ const DesktopNav = ({
           <ul className="menu menu-horizontal items-center px-1">
             {/* ---------Dropdown------ */}
             <li className="dropdown">
-              <div tabIndex={0} role="button" className="m-1 text-sm">
+              <div id="google_translate_element" style={{ height: '30px' }}></div>
+              {/* <div tabIndex={0} role="button" className="m-1 text-sm">
                 <FaEarthAmericas /> Language <FaAngleDown />
               </div>
               <ul
@@ -102,7 +132,7 @@ const DesktopNav = ({
                 <li>
                   <a>Item 2</a>
                 </li>
-              </ul>
+              </ul> */}
             </li>
             <li>
               {Auth?.user ? (
@@ -182,9 +212,8 @@ const DesktopNav = ({
       </div>
       {/* Nested menus */}
       <div
-        className={`w-100 absolute left-0 bg-[#f7f0e7] px-8 py-12 ${
-          showResources ? "top-0" : "-top-[120%]"
-        } duration-500 z-10`}
+        className={`min-w-[100vw] absolute left-0 bg-[#f7f0e7] px-8 py-12 ${showResources ? "top-0" : "-top-[120%]"
+          } duration-500 z-10`}
       >
         {/* Topbar */}
         <div className="flex items-center font-helvetica">

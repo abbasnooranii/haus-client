@@ -1,6 +1,6 @@
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
-import radioBtn from "../../../assets/Logos/Radio_Button_01.png";
-import { ChangeEvent, SetStateAction } from "react";
+// import radioBtn from "../../../assets/Logos/Radio_Button_01.png";
+import { Dispatch, ChangeEvent, SetStateAction } from "react";
 import { PropertyType } from "../../../types/PropertyType";
 
 const Controller = ({
@@ -8,15 +8,25 @@ const Controller = ({
   propertiesCount,
   selectedPage,
   setSelectedPage,
+  priceIncludingBills,
+  handlePriceBillsChange,
+  showLetAgreed,
+  handleLetAgreedChange,
   sort,
   handleSortChange,
   pageCount,
   isLoading,
   isError,
 }: {
+  refetchProperties?: () => void;
+  refetchPageCount?: () => void;
   properties: PropertyType[];
   selectedPage: number;
-  setSelectedPage: React.Dispatch<SetStateAction<number>>;
+  setSelectedPage: Dispatch<SetStateAction<number>>;
+  priceIncludingBills: boolean;
+  handlePriceBillsChange: (event: boolean) => void;
+  showLetAgreed: boolean;
+  handleLetAgreedChange: (event: boolean) => void;
   sort: string;
   handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   propertiesCount: number | undefined;
@@ -24,6 +34,15 @@ const Controller = ({
   isLoading: boolean;
   isError: boolean;
 }) => {
+
+  const handleLetAgreed = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleLetAgreedChange(e.target.checked);
+  };
+
+  const handlePriceBills = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handlePriceBillsChange(e.target.checked);
+  };
+
   // const { search } = searchContext;
   if (isLoading) {
     return (
@@ -47,13 +66,34 @@ const Controller = ({
       {properties.length > 0 && properties[0].AGENT_REF.includes("r") && (
         <div className="font-helvetica flex justify-between md:justify-end gap-6">
           <span className="flex items-center gap-3 text-sm md:text-base">
-            Price Including Bills <img src={radioBtn} alt="" width={16} />
+            <label htmlFor="priceIncludingBills" className="flex items-center gap-3">
+              Price Including Bills
+              <input
+                type="checkbox"
+                id="priceIncludingBills"
+                name="priceIncludingBills"
+                checked={priceIncludingBills}
+                onChange={handlePriceBills}
+                className="form-checkbox custom-checkbox"
+              />
+            </label>
           </span>
           <span className="flex items-center gap-3 text-sm md:text-base">
-            Show Let Agreed <img src={radioBtn} alt="" width={16} />
+            <label htmlFor="showLetAgreed" className="flex items-center gap-3">
+              Show Let Agreed
+              <input
+                type="checkbox"
+                id="showLetAgreed"
+                name="showLetAgreed"
+                checked={showLetAgreed}
+                onChange={handleLetAgreed}
+                className="form-checkbox custom-checkbox"
+              />
+            </label>
           </span>
         </div>
       )}
+
 
       {/* Other Controller */}
       <div className="flex flex-col md:flex-row items-center gap-6 md:justify-between mt-3">
