@@ -32,10 +32,10 @@ const GetInTouch = () => {
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // if (!captchaToken) {
-    //   alert('Please complete the CAPTCHA!');
-    //   return;
-    // }
+    if (!captchaToken) {
+      alert('Please complete the CAPTCHA!');
+      return;
+    }
     const form = e.currentTarget;
     const name = form.user_name.value;
     const email = form.email.value;

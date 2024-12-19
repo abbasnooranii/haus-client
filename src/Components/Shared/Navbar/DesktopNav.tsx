@@ -1,6 +1,4 @@
-import { FaAngleDown } from "react-icons/fa";
 import Logo from "../Logo/Logo";
-import { FaEarthAmericas } from "react-icons/fa6";
 import { LuCopySlash } from "react-icons/lu";
 import { TbTriangleInvertedFilled } from "react-icons/tb";
 import { GiHamburgerMenu } from "react-icons/gi";
