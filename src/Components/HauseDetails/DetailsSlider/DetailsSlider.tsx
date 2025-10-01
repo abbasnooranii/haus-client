@@ -72,7 +72,7 @@ const DetailsSlider = ({
             <SwiperSlide key={i}>
               <div className="">
                 <img
-                  src={`${import.meta.env.VITE_API_URL}/api/images/${
+                  src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
                     (property as Record<string, string>)[name]
                   }`}
                   alt={

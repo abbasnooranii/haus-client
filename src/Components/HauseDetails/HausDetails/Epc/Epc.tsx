@@ -7,7 +7,7 @@ const Epc = ({ property }: { property: PropertyType | undefined }) => {
     <div className="border border-gray-200 p-6 md:p-10 my-12 flex flex-col md:flex-row gap-6">
       <div className="max-w-[660px]">
         <img
-          src={`${import.meta.env.VITE_API_URL}/api/images/${
+          src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
             property?.MEDIA_IMAGE_60
           }`}
           alt={property?.MEDIA_IMAGE_TEXT_60}
@@ -21,7 +21,7 @@ const Epc = ({ property }: { property: PropertyType | undefined }) => {
       </div>
       <div className="max-w-[660px]">
         <img
-          src={`${import.meta.env.VITE_API_URL}/api/images/${
+          src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
             property?.MEDIA_IMAGE_61
           }`}
           alt={property?.MEDIA_IMAGE_TEXT_61}

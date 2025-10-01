@@ -11,7 +11,7 @@ const Images = ({ property }: { property: PropertyType | undefined }) => {
       </div>
       <div className="hidden md:block mb-3">
         <img
-          src={`${import.meta.env.VITE_API_URL}/api/images/${
+          src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
             property?.MEDIA_IMAGE_02
           }`}
           alt={property?.MEDIA_IMAGE_TEXT_02}
@@ -25,7 +25,7 @@ const Images = ({ property }: { property: PropertyType | undefined }) => {
       </div>
       <div className="hidden md:block">
         <img
-          src={`${import.meta.env.VITE_API_URL}/api/images/${
+          src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
             property?.MEDIA_IMAGE_03
           }`}
           alt={property?.MEDIA_IMAGE_TEXT_03}

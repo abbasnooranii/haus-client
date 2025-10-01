@@ -50,7 +50,7 @@ const CardSlider = ({ property }: { property: PropertyType }) => {
             <SwiperSlide key={i}>
               <div className="flex gap-1">
                 <img
-                  src={`${import.meta.env.VITE_API_URL}/api/images/${
+                  src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
                     (property as Record<string, string>)[name[0]]
                   }`}
                   alt={
@@ -68,7 +68,7 @@ const CardSlider = ({ property }: { property: PropertyType }) => {
                   className="w-1/2"
                 />
                 <img
-                  src={`${import.meta.env.VITE_API_URL}/api/images/${
+                  src={`${import.meta.env.VITE_HAUS_IMAGES_URL}${
                     (property as Record<string, string>)[name[1]]
                   }`}
                   alt={
